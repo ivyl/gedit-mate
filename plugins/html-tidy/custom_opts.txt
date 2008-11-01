@@ -1,0 +1,81 @@
+wrap-jste: yes
+new-blocklevel-tags: 
+literal-attributes: no
+add-xml-decl: no
+logical-emphasis: no
+new-empty-tags: 
+uppercase-attributes: no
+assume-xml-procins: no
+slide-style: 
+indent-cdata: no
+doctype: auto
+output-encoding: ascii
+hide-endtags: no
+bare: no
+punctuation-wrap: no
+vertical-space: no
+wrap: 68
+drop-empty-paras: yes
+indent-attributes: no
+join-classes: no
+wrap-attributes: no
+ascii-chars: no
+break-before-br: no
+join-styles: yes
+escape-cdata: no
+show-body-only: no
+tidy-mark: yes
+alt-text: 
+write-back: no
+accessibility-check: 0
+quote-ampersand: yes
+show-errors: 6
+force-output: no
+quote-marks: no
+replace-color: no
+input-xml: no
+fix-backslash: yes
+new-pre-tags: 
+hide-comments: no
+split: no
+wrap-sections: yes
+add-xml-space: no
+enclose-block-text: no
+drop-proprietary-attributes: no
+ncr: yes
+newline: 
+show-warnings: yes
+fix-bad-comments: yes
+merge-divs: auto
+uppercase-tags: no
+repeated-attributes: keep-last
+enclose-text: no
+error-file: 
+lower-literals: yes
+fix-uri: yes
+drop-font-tags: no
+indent-spaces: 2
+input-encoding: latin1
+output-xhtml: no
+indent: no
+output-xml: no
+language: 
+output-html: no
+output-file: 
+markup: yes
+char-encoding: ascii
+output-bom: auto
+quiet: no
+word-2000: no
+quote-nbsp: yes
+wrap-php: yes
+wrap-script-literals: no
+tab-size: 8
+clean: no
+gnu-emacs-file: 
+numeric-entities: no
+new-inline-tags: 
+wrap-asp: yes
+css-prefix: 
+keep-time: no
+gnu-emacs: no

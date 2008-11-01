@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    
+	<title><%= @blog_title || 'Arkadiusz Hiler - Blog' %></title>	
+	
+	<link rel="shortcut icon" href="icon.ico" />
+	<link type="text/css" href="/stylesheets/style.css" media="screen" rel="stylesheet"/>
+</head>
+<body>
+    <div id="main">
+		<div id="content">
+			<div id="header"><br />
+				<div id="shortmenu">
+				    <ul>
+					    <!-- Put object list here! upper menu-->
+						<li><a href="/blog/post/1">O mnie</a></li>
+						<li><a href="http://intype.info/">Galeria</a></li>
+						<li><a href="/blog">Blog</a></li>					
+					</ul>
+				</div>
+			</div>    
+			<div id="container">
+			    <div id="page">
+			        
+			        <% if false #flash[:notice] %>
+			            <div id="notice"><%= flash[:notice] %></div>
+			        <% end %>
+			        
+			    	<%= catch_content :for_layout %>
+				    <!-- body place -->
+				</div>
+				<div id="sidebar">sidebar <br />sidebar <br />sidebar <br />sidebar <br />sidebar <br />
+				    <!-- sidebarhere -->
+				</div>
+				<div class='clear'></div>
+			</div>
+		</div>
+		<div id="outerfooter">
+		    </i><div id="footer"><tt> footer sample text</tt> </div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+accessibility-check: 0
+show-errors: 6
+show-warnings: yes

@@ -1,0 +1,8 @@
+[Gedit Plugin]
+Loader=python
+Module=code_formatter
+IAge=2
+Name=Code Formatter
+Description=Press Ctrl+Shift+F to format the source code
+Authors=Rodrigo Urubatan <rodrigo at urubatan dot com dot br>
+Website=http://urubatan.info/

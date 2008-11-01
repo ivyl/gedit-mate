@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <link rel="stylesheet"
+          type="text/css"
+          href="html_tidy.css">
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8">
+    <meta name="generator"
+          content="HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+    <title>
+      HTML-Tidy Gedit Plugin
+    </title>
+  </head>
+  <body>
+    <h1>
+      HTML-Tidy Gedit Plugin
+    </h1>
+    <div id="toc">
+      <ul>
+        <li>
+          <a href="#purpose">Purpose</a>
+        </li>
+        <li>
+          <a href="#download_inst">Download, Install, and Activate</a>
+        </li>
+        <li>
+          <a href="#use">Use</a>
+          <ul>
+            <li>
+              <a href="#checking_probs">Checking for Problems</a>
+            </li>
+            <li>
+              <a href="#correcting_probs">Correcting Problems</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#configure">Configure</a>
+          <ul>
+            <li>
+              <a href="#accessing_config">Accessing the Configuration Dialog</a>
+            </li>
+            <li>
+              <a href="#setting_opts">Setting HTML Tidy's Options</a>
+            </li>
+            <li>
+              <a href="#setting_f_types">Setting the File Types</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="main">
+      <h2>
+        <a name="purpose"
+            id="purpose">Purpose</a>
+      </h2>
+      <p>
+        When editing HTML it's easy to make mistakes. Wouldn't it be nice if there was a simple way to fix these
+        mistakes automatically and tidy up sloppy editing into nicely layed out markup? Dave Raggett's <a href=
+        "http://tidy.sourceforge.net/">HTML Tidy</a> is a free utility for doing just that.
+      </p>
+      <p>
+        This is an <a href="http://tidy.sourceforge.net/">HTML Tidy</a> plugin for <a href=
+        "http://www.gnome.org/projects/gedit/">gedit</a>, the default text editor for the <a href=
+        "http://www.gnome.org/">Gnome Desktop</a>. Once activated, this plugin allows:
+      </p>
+      <ul>
+        <li>Fixing an HTML (or XHTML, or XML) document being written (from within <a href=
+        "http://www.gnome.org/projects/gedit/">gedit</a>)
+        </li>
+        <li>Listing the errors and warnings of an HTML (or XHTML, or XML) document (without fixing it)
+        </li>
+        <li>Configuring <a href="http://tidy.sourceforge.net/">HTML Tidy</a>
+        </li>
+      </ul>
+      <h2>
+        <a name="download_inst"
+            id="download_inst">Download, Install, and Activate</a>
+      </h2>
+      <p>
+        First, please make sure that <a href="http://tidy.sourceforge.net/">HTML Tidy</a> is installed on your system
+        (<i>e.g.</i>, via <span class="linux_cmd">sudo apt-get install tidy</span>). Following that, you can download,
+        install, and activate the plugin using the following steps:
+      </p>
+      <ol>
+        <li>Download <a href="html-tidy-gedit-plugin.tar.gz">html-tidy-gedit-plugin.tar.gz</a>, and extract the
+        contents to gedit's plugin directory (typically, ~/.gnome2/gedit/plugins/).
+        </li>
+        <li>Restart gedit.
+        </li>
+        <li>Select <span class="gedit_menu">Edit → Preferences → Plugins</span>. Check the plugin as in the next
+        screenshot. <img src="activate_plugin.png"
+              alt="Activating the Plugin">
+        </li>
+      </ol>
+      <h2>
+        <a name="use"
+            id="use">Use</a>
+      </h2>
+      <p>
+        The following screenshot shows a <a href="http://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic">very
+        basic HTML example</a>. We'll see <a href="#checking_probs">Checking for Problems</a> and <a href=
+        "#correcting_probs">Correcting Problems</a>.
+      </p><img src="html_simple_example.png"
+           alt="A Simple HTML Document">
+      <h3>
+        <a name="checking_probs"
+            id="checking_probs">Checking for Problems</a>
+      </h3>
+      <p>
+        To check for problems, select <span class="gedit_menu">Tools → Tidy Check</span>. The bottom pane (which can be
+        shown through <span class="gedit_menu">Ctrl + F9</span>) will show the problem report. Clicking on a row in the
+        bottom pane will place the insert cursor at the location of the corresponding problem. The following screenshot
+        shows a report for two problems: a missing <span class="html_thingy">&lt;!Doctype&gt;</span> declaration, and a
+        missing <span class="html_thingy">title</span> element.
+      </p><img src="tidy_checked.png"
+           alt="The Document Checked">
+      <h3>
+        <a name="correcting_probs"
+            id="correcting_probs">Correcting Problems</a>
+      </h3>
+      <p>
+        If you are reasonably pleased with your document, you might trust Tidy to correct it by selecting <span class=
+        "gedit_menu">Tools → Tidy</span>. The following screenshot shows the result.
+      </p><img src="tidy.png"
+           alt="The Document Tidied">
+      <p>
+        Note that Tidy inserted some stuff, like the empty <span class="html_thingy">&lt;title&gt;&lt;/title&gt;</span>
+        pair. This empty title might not be what your page needs, but no HTML validity check will indicate further
+        problems with the <span class="html_thingy">title</span> element. You might consider, therefore, first <a href=
+        "#checking_probs">Checking for Problems</a>.
+      </p>
+      <h2>
+        <a name="configure"
+            id="configure">Configure</a>
+      </h2>
+      <h3>
+        <a name="accessing_config"
+            id="accessing_config">Accessing the Configuration Dialog</a>
+      </h3>
+      <p>
+        You can access the configuration dialog in one of two (equivalent) ways:
+      </p>
+      <ol>
+        <li>Select <span class="gedit_menu">Edit → Preferences → Plugins</span>, highlight this plugin, and click
+        Configure Plugin.
+        </li>
+        <li>Selecte <span class="gedit_menu">Tools → Configure Tidy...</span>
+        </li>
+      </ol>
+      <p>
+        The following screenshot shows the configuration dialog:
+      </p><img src="config.png"
+           alt="Configure">
+      <p>
+        Now we have the configuration dialog, which has just two frames. We'll cover them in <a href=
+        "#setting_opts">Setting HTML Tidy's Options</a> and <a href="#setting_f_types">Setting the File Types</a>.
+      </p>
+      <h3>
+        <a name="setting_opts"
+            id="setting_opts">Setting HTML Tidy's Options</a>
+      </h3>
+      <p>
+        HTML Tidy comes with <a href="http://tidy.sourceforge.net/docs/quickref.html">quite a few configuration
+        options</a>. You can set them using the radio options in the configuration dialog's <span class=
+        "gedit_menu">HTML Tidy Options</span> frame:
+      </p>
+      <ul>
+        <li>Default: This just uses whatever HTML Tidy decides is the defaults. (Note: If you write non-English HTML
+        pages - you don't want this.)
+        </li>
+        <li>From File: This parses and uses an <a href="http://www.w3.org/People/Raggett/tidy/#config">HTML Tidy
+        configuration file</a>.
+        </li>
+        <li>Custom: This allows you to manually set each option, using the dialog in the next screenshot: <img src=
+        "config_opts.png"
+              alt="Tidy Options">
+        </li>
+      </ul>
+      <h3>
+        <a name="setting_f_types"
+            id="setting_f_types">Setting the File Types</a>
+      </h3>
+      <p>
+        Suppose you're editing a Python source, your LaTeX thesis, or just a (non-HTML) suicide note. You probably
+        don't want to run HTML Tidy on these, and it would be nice if the relevant actions (<span class=
+        "gedit_menu">Tools → Tidy</span> and <span class="gedit_menu">Tools → Tidy Check</span>) were just disabled
+        when you do this. You can set this using the radio options in the configuration dialog's <span class=
+        "gedit_menu">File Types</span> frame:
+      </p>
+      <ul>
+        <li>Mime Types: The actions will be available only if gedit decides the document's Mime-type is HTML, XHTML, or
+        XML
+        </li>
+        <li>By Extension: The actions will be available only if the active document's file type extension is one of a
+        list.
+        </li>
+        <li>all: The actions are always available.
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

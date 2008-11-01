@@ -1,0 +1,47 @@
+add-xml-decl: no
+add-xml-space: no
+alt-text: 
+assume-xml-procins: no
+bare: no
+clean:no
+css-prefix: 
+// decorate-inferred-ul: no
+doctype: auto
+drop-empty-paras: yes
+drop-font-tags: no
+drop-proprietary-attributes: no
+enclose-block-text: no
+enclose-text: no
+escape-cdata: no
+fix-backslash: yes
+fix-bad-comments: yes
+fix-uri: yes
+hide-comments: no
+hide-endtags: no
+indent-cdata: no
+input-xml: no
+join-classes: no
+join-styles: yes
+literal-attributes: no
+logical-emphasis: no
+lower-literals: yes
+merge-divs: auto
+ncr: yes
+new-blocklevel-tags: 
+new-empty-tags: 
+new-inline-tags: 
+new-pre-tags: 
+numeric-entities: no
+output-html: no
+output-xhtml: no
+output-xml: no
+// preserve-entities: no
+quote-ampersand: yes
+quote-marks: no
+quote-nbsp: yes
+repeated-attributes: keep-last
+replace-color: no
+show-body-only: no
+uppercase-attributes: no
+uppercase-tags: no
+word-2000: no

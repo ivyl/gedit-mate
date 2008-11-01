@@ -1,0 +1,17 @@
+break-before-br: no
+indent: no
+indent-attributes: no
+indent-spaces: 2
+markup: yes
+punctuation-wrap: no
+split: no
+tab-size: 8
+vertical-space: no
+wrap: 68
+wrap-asp: yes
+wrap-attributes: no
+wrap-jste: yes
+wrap-php: yes
+wrap-script-literals: no
+wrap-sections: yes
+

@@ -1,0 +1,45 @@
+h1 
+{
+    border-bottom:1px dashed white;
+    font-weight:bold;
+    background-color:black;
+    color:silver;
+}
+
+div#main            
+{ 
+	margin-left: 3%
+	margin-right: 3%
+}
+
+
+h2          
+{ 
+	padding-bottom:0; 
+	margin-bottom:0.5em; 
+	margin-top: 1.5em;
+	border-bottom:1px solid #555; 
+}
+
+h3          
+{ 
+	padding-bottom:0; 
+	margin-bottom:0.25; 
+	color:#444 
+}
+
+span.html_thingy
+{
+	font-family: monospace;
+}
+
+span.linux_cmd
+{
+	font-family: monospace;
+}
+
+span.gedit_menu
+{
+	color: brown;
+}
+

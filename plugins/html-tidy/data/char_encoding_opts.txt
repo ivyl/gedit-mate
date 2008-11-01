@@ -1,0 +1,7 @@
+ascii-chars: no
+char-encoding: ascii
+input-encoding: latin1
+language: 
+newline:
+output-bom: auto
+output-encoding: ascii

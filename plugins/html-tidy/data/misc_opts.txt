@@ -1,0 +1,11 @@
+error-file: 
+force-output: no
+gnu-emacs: no
+gnu-emacs-file: 
+keep-time: no
+output-file: 
+quiet: no
+slide-style: 
+tidy-mark: yes
+write-back: no
+

@@ -1,0 +1,8 @@
+[Gedit Plugin]
+Loader=python
+Module=html-tidy
+IAge=2
+Name=HTML Tidy
+Description=Clean up your web pages with HTML TIDY
+Authors=Ami Tavory <atavory@gmail.com>
+Website=http://www.eng.tau.ac.il/~atavory/gedit-plugins/html-tidy/

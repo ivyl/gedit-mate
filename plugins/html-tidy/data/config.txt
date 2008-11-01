@@ -1,0 +1,4 @@
+opt_file: 
+extensions: html, xhtml, xml
+type_config: html_xhtml_and_xml_only
+tidy_opts_config: default

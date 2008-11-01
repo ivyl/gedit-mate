@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head dir="rtl">
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>חיפוש לינארי ובינרי</title>
+</head>
+
+<body>
+  <h1>חיפוש לינארי ובינרי</h1>
+
+  <ul id="vertical_menu_list">
+    <li><a href="#intro">הקדמה</a></li>
+
+    <li>
+      <a href="#linear_search">חיפוש לינארי</a>
+
+      <ul>
+        <li><a href="#linear_search_basic_idea">הרעיון
+        הבסיסי</a></li>
+
+        <li><a href="#linear_search_code">פסוודו-קוד</a></li>
+
+        <li><a href="#linear_search_proof">נכונות</a></li>
+
+        <li><a href="#linear_search_analysis">ניתוח
+        סיבוכיות</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#binary_search">חיפוש בינרי</a>
+
+      <ul>
+        <li><a href="#binary_search_basic_idea">הרעיון
+        הבסיסי</a></li>
+
+        <li><a href="#binary_search_code">פסוודו-קוד</a></li>
+
+        <li><a href="#binary_search_proof">נכונות</a></li>
+
+        <li><a href="#binary_search_analysis">ניתוח
+        סיבוכיות</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div id="content">
+    <h2><a name="intro" id="intro">הקדמה</a></h2>
+
+    <p>דף זה עוסק במציאת איבר במערך, לדוגמה, מציאת 7 במערך בתרשים
+    הבא. נכסה שתי טכניקות: <i>חיפוש לינארי</i> ו<i>חיפוש
+    בינרי</i>.</p>
+
+    <div class="center">
+      <img src="img/search/search_problem.gif" class="drawing" alt=
+      "בעיית החיפוש">
+    </div>
+
+    <div class="see_also">
+      ב<a href="book_syllabus.html#book">ספר הקורס</a>, הפרק
+      "Introduction" מכסה נושאים אלה.
+    </div>
+
+    <h2><a name="linear_search" id="linear_search">חיפוש
+    לינארי</a></h2>
+
+    <h3><a name="linear_search_basic_idea" id=
+    "linear_search_basic_idea">הרעיון הבסיסי</a></h3>
+
+    <p>חיפוש לינארי הוא פשוט מאד: עוברים על המערך משמאל לימין ב"קו"
+    (ומכאן שמו, linear מלשון line), עד שמוצאים את האיבר המבוקש, או
+    מגיעים לסוף המערך.</p>
+
+    <div class="cpp">
+      <a href="http://www.sgi.com/tech/stl/find.html">std::find</a>
+    </div>
+
+    <h3><a name="linear_search_code" id=
+    "linear_search_code">פסוודו-קוד</a></h3>
+
+    <div class="clrs_pc_src">
+      linear_search
+    </div>
+
+    <div class="important">
+      <ul>
+        <li>אם <span class="clrs_pc_exp">X</span> הוא מערך, אז
+        <span class="clrs_pc_exp">Length(X)</span> מחזיר את
+        ארכו.</li>
+
+        <li>המערכים הנם מבוססי-1, כלומר האינדקס של איברם הראשון הוא
+        1 (ש<u>לא</u> כבC, שם הוא 0).</li>
+
+        <li>ל<u>שוויון</u> נשתמש ב<span class="clrs_pc_exp">a ==
+        b</span> (כלומר בדיקה האם <span class=
+        "clrs_pc_exp">a</span> שקול ל<span class=
+        "clrs_pc_exp">b</span>); ל<u>השמה</u> נשתמש ב<span class=
+        "clrs_pc_exp">a = b</span> (כלומר ש<span class=
+        "clrs_pc_exp">a</span> מקבל את <span class=
+        "clrs_pc_exp">b</span>).</li>
+
+        <li><span class="clrs_pc_exp">Nil</span> הוא ערך מיוחד
+        המסמן "כלום" (בדומה לNULL בC).</li>
+      </ul>
+    </div>
+
+    <div class="info">
+      <p>אין צורך לכתוב את האלגוריתם מחדש עבור ווריאציות
+      טריביאליות, לדוגמה:</p>
+
+      <ul>
+        <li>ווריאציה שרק מחזירה <span class=
+        "clrs_pc_exp">True</span> או<span class=
+        "clrs_pc_exp">False</span> בהתאם לשאלה האם הערך נמצא במערך
+        או לא.</li>
+
+        <li>ווריאציה המקבלת מערך של מבנים (נניח <span class=
+        "clrs_pc_exp">Student</span>, שלכל אחד מהם שדה <span class=
+        "clrs_pc_exp">id</span> ו<span class=
+        "clrs_pc_exp">grade</span>, ומחזירה מבנה שאחד משדותיו תואם
+        ערך כלשהו (לדוגמה <span class="clrs_pc_exp">Student</span>
+        בעל<span class="clrs_pc_exp">id</span> נתון).</li>
+      </ul>
+    </div>
+
+    <h3><a name="linear_search_proof" id=
+    "linear_search_proof">נכונות</a></h3>
+
+    <div class="important">
+      יש להוכיח את נכונותו של כל אלגוריתם. כלומר:
+
+      <ul>
+        <li>יש להראות שהאלגוריתם פועל בזמן סופי עבור קלט סופי (אם
+        יש לאלגוריתם לולאות או קריאות רקורסיביות מסובכות, עליך
+        להראות שהן אינן אינסופיות).</li>
+
+        <li>יש להראות שהאלגוריתם אכן פותר את הבעיה.</li>
+      </ul>
+    </div>
+
+    <div class="proof">
+      נניח ש<span class="clrs_pc_exp">v</span> מופיע ב<span class=
+      "clrs_pc_exp">Values</span> באינדקס <span class=
+      "clrs_pc_exp">j</span>. הלולאה <span class=
+      "clrs_pc_line_num">1</span> לאחר מה תקבע <span class=
+      "clrs_pc_exp">i = j</span>.‏ <span class=
+      "clrs_pc_line_num">2</span> תמצא שאכן <span class=
+      "clrs_pc_exp">Values[j] == v</span>, ו<span class=
+      "clrs_pc_line_num">3</span> אכן תחזיר את <span class=
+      "clrs_pc_exp">Values[j]</span>. מצד שני, נניח ש<span class=
+      "clrs_pc_exp">v</span>אינו תואם שום דבר ב<span class=
+      "clrs_pc_exp">Values</span>. אז <span class=
+      "clrs_pc_line_num">2</span> לעולם לא תחליט שהאיבר נמצא. היות
+      שהלולאה סופית (עבור קלט סופי), היא תסתיים לאחר מה,
+      ו<span class="clrs_pc_line_num">4</span> תחזיר <span class=
+      "clrs_pc_exp">Nil</span>.
+    </div>
+
+    <h3><a name="linear_search_analysis" id=
+    "linear_search_analysis">ניתוח סיבוכיות</a></h3>
+
+    <div class="important">
+      יש לנתח את סיבוכיותו של כל אלגוריתם.
+    </div>
+
+    <div class="see_also">
+      לאחר שנלמד <a href=
+      "http://www.eng.tau.ac.il/dsa/orders_of_growth_base.html">סדרי
+      גדילה</a>, תוכל להראות במדויק שסיבוכיות האלגוריתם הנה
+      <span class="mtmtx" dir="ltr">Θ(n)</span> במקרה הגרוע.
+    </div>נקבע את <span class="mtmtx" dir="ltr">n</span>
+    כ<span class="clrs_pc_exp">Length(Values)</span>.‏
+
+    <p>כמה זמן אורכת <span class="clrs_pc_line_num">2</span>
+    במדויק? אי אפשר לדעת: זה תלוי במספר גורמים, כמו חומרת המחשב או
+    שפת התכנות. לעומת זאת, נתן לדעת בוודאות שזמן זה הוא גודל חיובי
+    (ממש) שאינו תלוי ב<span class="mtmtx" dir="ltr">n</span>.</p>
+
+    <div class="def">
+      כשגודל כלשהו הוא חיובי ממש, ואינו תלוי בגודל הקלט, נאמר שהוא
+      <span class="mtmtx" dir="ltr">Θ(1)</span>.
+    </div>
+
+    <p>לא כל הדברים הם <span class="mtmtx" dir="ltr">Θ(1)</span>.
+    לדוגמה, <span class="clrs_pc_line_num">2-3</span> אכן
+    <span class="mtmtx" dir="ltr">Θ(1)</span>, אבל <span class=
+    "clrs_pc_line_num">1-3</span> <u>אינם</u> <span class="mtmtx"
+    dir="ltr">Θ(1)</span>, מפני שאורך הלולאה תלוי בגודל הקלט
+    <span class="mtmtx" dir="ltr">n</span>.</p>
+
+    <p>בנקודה זו נוכל לאמר, אבל, שאם <span class=
+    "clrs_pc_exp">v</span> נמצא ב<span class=
+    "clrs_pc_exp">Values</span> אז <span class=
+    "clrs_pc_exp">Linear-Search</span> אורכת <span class="mtmtx"
+    dir="ltr">Θ(1) + Θ(1) · n + Θ(1)</span> זמן במקרה הגרוע (שהוא
+    כאשר האיבר שאותו מחפשים הוא האחרון ב<span class=
+    "clrs_pc_exp">Values</span>).</p>
+
+    <div class="see_also">
+      ב<a href=
+      "http://www.eng.tau.ac.il/dsa/orders_of_growth_base.html">סדרי
+      גדילה</a> נלמד לפשט ביטוי זה.
+    </div>
+
+    <p>כעת נצייר גראף של<span class="mtmtx" dir="ltr">Θ(1) + Θ(1) ·
+    n + Θ(1)</span> :</p>
+
+    <div class="center">
+      <img src="img/search/lin_search_run_time.gif" class="drawing"
+      alt="זמן הריצה של חיפוש לניארי">
+    </div>
+
+    <div class="info">
+      איננו יכולים לקבוע היכן פוגש הקו את ציר <span class="mtmtx"
+      dir="ltr">y</span>, או מה זוויתו, אולם אנו יודעים שזו צורתו.
+    </div>
+
+    <h2><a name="binary_search" id="binary_search">חיפוש
+    בינרי</a></h2>
+
+    <h3><a name="binary_search_basic_idea" id=
+    "binary_search_basic_idea">הרעיון הבסיסי</a></h3>
+
+    <p>אם המערך ממויין, ביכולתנו לעשות משהו יעיל יותר. נתבונן בתחום
+    הכולל של האיברים, ונשקול את היחס בין האיבר המבוקש לאיבר האמצעי
+    בתחום. זה מחלק את התחום לשני תחומים - ימני ושמאלי. כעת:</p>
+
+    <ul>
+      <li>אם האיבר האמצעי הוא האיבר המבוקש - סיימנו.</li>
+
+      <li>אם האיבר האמצעי גדול מהאיבר המבוקש, עלינו לחפש בתחום
+      השמאלי. היות שהמערך ממויין, או שהאיבר המבוקש נמצא בתחום
+      השמאלי, או שאיננו כלל במערך.</li>
+
+      <li>באופן דומה, אם האיבר האמצעי קטן מהאיבר המבוקש, עלינו לחפש
+      בתחום הימני.</li>
+    </ul>
+
+    <p>התרשים הבא מראה את התחומים שאנו שוקלים בחיפוש אחר 7:</p>
+
+    <div class="center">
+      <img src="img/search/bin_search.gif" class="drawing" alt=
+      "חיפוש בינרי">
+    </div>
+
+    <div class="info">
+      חיפוש בינרי הוא אלגוריתם מסוג <i>divide-and-conquer</i> (הפרד
+      ומשול): כדי לפתור בעיה "גדולה" (מציאת איבר במערך "גדול"),
+      פותרים בעיה "קטנה יותר" (מציאת האיבר בתת-תחום).
+    </div>
+
+    <div class="cpp">
+      <a href=
+      "http://www.sgi.com/tech/stl/binary_search.html">std::binary_search</a>
+    </div>
+
+    <h3><a name="binary_search_code" id=
+    "binary_search_code">פסוודו-קוד</a></h3>
+
+    <div class="clrs_pc_src">
+      binary_search
+    </div>
+
+    <p>המשתנים <span class="clrs_pc_exp">left</span> ו<span class=
+    "clrs_pc_exp">right</span> הם "גבולות הגזרה" של התחום. תחילה
+    קובעים אותם לאינדקס הראשון והאחרון של כל המערך, (<span class=
+    "clrs_pc_line_num">3</span> ו<span class=
+    "clrs_pc_line_num">4</span>). הלולאה ב<span class=
+    "clrs_pc_line_num">3-10</span> מחשבת את האינדקס האמצעי
+    (<span class="clrs_pc_line_num">4</span>), בודקת האם סיימנו,
+    ומעדכנת את <span class="clrs_pc_exp">left</span> ו<span class=
+    "clrs_pc_exp">right</span>.</p>
+
+    <h3><a name="binary_search_proof" id=
+    "binary_search_proof">נכונות</a></h3>
+
+    <div class="proof">
+      (סופיות) הלולאה ב<span class="clrs_pc_line_num">3-10</span>
+      ממשיכה כל עוד <span class="clrs_pc_exp">left</span> אינו גדול
+      מ<span class="clrs_pc_exp">right</span> ו<span class=
+      "clrs_pc_line_num">10</span> לא יצאה מהפונקציה. אם
+      <span class="clrs_pc_line_num">5</span> הצליחה, אז
+      <span class="clrs_pc_exp">left</span> גדלה ב1 לפחות; אם
+      <span class="clrs_pc_line_num">7</span> הצליחה, אז
+      <span class="clrs_pc_exp">right</span> קטנה ב1 לפחות; אם לא,
+      אז <span class="clrs_pc_line_num">10</span> תצא מהלולאה.
+    </div>
+
+    <div class="proof">
+      נוכיח באינדוקציה שאמ"ם <span class="clrs_pc_exp">v</span>
+      נמצא ב<span class="clrs_pc_exp">Values</span> אז <span class=
+      "clrs_pc_line_num">10</span> מתבצעת. האינדוקציה היא על
+      <span class="clrs_pc_exp">right</span> - <span class=
+      "clrs_pc_exp">left</span> + 1 (אורך התחום).
+
+      <p>(בסיס האינדוקציה) אם האורך הוא 0 או 1, אז מהתבוננות בקוד,
+      הטענה נכונה.</p>
+
+      <p>(מעבר האינדוקציה) נניח שהטענה נכונה לכל <span class=
+      "mtmtx" dir="ltr">i' &lt; i</span>. אם <span class=
+      "clrs_pc_line_num">5</span> מתקיימת, אז <span class=
+      "clrs_pc_exp">v</span> קטן ממש מ<span class=
+      "clrs_pc_exp">Values[mid]</span>; הוא חייב להיות בתחום
+      <span class="clrs_pc_exp">left</span> עד <span class=
+      "clrs_pc_exp">mid <span class="clrs_pc_op">-</span> 1</span>,
+      או שאינו במערך כלל (שכן המערך ממויין). עפ"י הנחת האינדוקציה,
+      נקבל את התשובה הנכונה. באופן דומה, אם <span class=
+      "clrs_pc_line_num">7</span> מתקיימת, אז נקבל את התשובה
+      הנכונה. אם <span class="clrs_pc_line_num">10</span> מתבצעת,
+      אז <span class="clrs_pc_line_num">5</span> ו<span class=
+      "clrs_pc_line_num">7</span> לא התקיימו, ולכן <span class=
+      "clrs_pc_exp">Values[mid]</span> חייב להיות שקול
+      ל<span class="clrs_pc_exp">v</span>.</p>
+
+      <p>לאחר שהוכחנו את האינדוקציה, ברור שהפונקציה עובדת. אם
+      <span class="clrs_pc_exp">Values</span> מכילה את <span class=
+      "clrs_pc_exp">v</span>, אז <span class=
+      "clrs_pc_line_num">10</span> תתבצע. אם לא, הלולאה תסתיים בזמן
+      סופי (הוכחנו זאת), ו<span class="clrs_pc_line_num">11</span>
+      תחזיר שהאיבר אינו נמצא.</p>
+    </div>
+
+    <h3><a name="binary_search_analysis" id=
+    "binary_search_analysis">ניתוח סיבוכיות</a></h3>
+
+    <div class="see_also">
+      לאחר שנלמד <a href=
+      "http://www.eng.tau.ac.il/dsa/orders_of_growth_base.html">סדרי
+      גדילה</a>, תוכל להראות במדויק שסיבוכיות האלגוריתם הנה
+      <span class="mtmtx" dir="ltr">Θ(log(n))</span>.
+    </div>שוב, נקבע את <span class="mtmtx" dir="ltr">n</span>
+    כ<span class="clrs_pc_exp">Length(Values)</span>.
+
+    <p>כ"א מ<span class="clrs_pc_line_num">1</span>, <span class=
+    "clrs_pc_line_num">2</span>, ו<span class=
+    "clrs_pc_line_num">11</span>, אורכת <span class="mtmtx" dir=
+    "ltr">Θ(1)</span> זמן (הן אינן תלויות בגודל הקלט <span class=
+    "mtmtx" dir="ltr">n</span>). באופן דומה, בלי קשר למתרחש
+    ב<span class="clrs_pc_line_num">4</span> - <span class=
+    "clrs_pc_line_num">11</span>, <span class=
+    "clrs_pc_line_num">4</span> - <span class=
+    "clrs_pc_line_num">11</span> אורכת <span class="mtmtx" dir=
+    "ltr">Θ(1)</span> זמן.</p>
+
+    <p>נניח שאורך התחום הוא <span class="mtmtx" dir="ltr">n</span>
+    כמה זמן יכולה הלולאה לארוך? אם <span class=
+    "clrs_pc_line_num">10</span> אינה מתבצעת, אז האיטרציה הבאה תפעל
+    על תחום שגודלו<span class="mtmtx" dir="ltr">⌊ (n - 1) / 2
+    ⌋</span>, ולכן אם נסמן את זמן הריצה המקסימאלי של הלולאה
+    כ<span class="mtmtx" dir="ltr">T(n)</span>, אז נקבל<span class=
+    "mtmtx" dir="ltr">T(n) = T(⌊ (n - 1) / 2⌋) + Θ(1)</span>. מאוחר
+    יותר בקורס נלמד כיצד לפתור נוסחאות כגון זו.</p>
+
+    <p>בנקודה זו נוכל לאמר, אבל, שאם <span class=
+    "clrs_pc_exp">v</span> נמצא ב<span class=
+    "clrs_pc_exp">Values</span>, אז <span class=
+    "clrs_pc_exp">Linear-Search</span> ייארך לכל היותר <span class=
+    "mtmtx" dir="ltr">Θ(1) + T(n)</span> זמן.</p>
+
+    <div class="see_also">
+      ב<a href=
+      "http://www.eng.tau.ac.il/dsa/orders_of_growth_base.html">סדרי
+      גדילה</a> נלמד כיצד לפשט ביטויים כגון זה.
+    </div>
+
+    <p>בהמשך נראה ש<span class="mtmtx" dir="ltr">T(n) = Θ(1) ·
+    log(n + 1)</span>. שוב, נצייר ביטוי זה:</p>
+
+    <div class="center">
+      <img src="img/search/bin_search_run_time.gif" class="drawing"
+      alt="זמן החיפוש של חיפוש בינרי">
+    </div>
+
+    <div class="info">
+      שוב פעם, איננו יודעים דברים ספיציפיים, כמו היכן פוגש הקו את
+      ציר <span class="mtmtx" dir="ltr">y</span>.
+    </div>
+  </div>
+</body>
+</html>
