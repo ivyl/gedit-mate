@@ -295,13 +295,6 @@ end]]></text>
     <text><![CDATA[Dir.glob(${1:glob}) { |${2:file}| ${0} }]]></text>
   </snippet>
   <snippet>
-    <tag>doo</tag>
-    <description>Insert do |object| … end</description>
-    <text><![CDATA[do |${1:object}|
-	${0}
-end]]></text>
-  </snippet>
-  <snippet>
     <tag>dow</tag>
     <description>downto(0) { |n| .. }</description>
     <text><![CDATA[downto(${1}) { |${2:n}| ${0} }]]></text>
@@ -1055,12 +1048,6 @@ end]]></text>
     <tag>w</tag>
     <description>attr_writer ..</description>
     <text><![CDATA[attr_writer :${1:attr_names}]]></text>
-  </snippet>
-  <snippet>
-    <tag>when</tag>
-    <description>when …</description>
-    <text><![CDATA[when ${1:condition}
-	${0}]]></text>
   </snippet>
   <snippet>
     <tag>while</tag>

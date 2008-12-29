@@ -1,3 +1,2 @@
 #!/bin/bash
-nohup gedit $@ 2> /dev/null &
-rm nohup.out
+nohup gedit $@ 2> /dev/null > /dev/null &
