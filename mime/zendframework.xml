@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-  <mime-type type="text/phtml">
-    <sub-class-of type="text/html"/>
+  <mime-type type="application/x-php">
     <comment>PHTML Template</comment>
-    <magic priority="50">
-      <match value="&lt;?" type="string" offset="0"/>
-    </magic>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="text-x-script"/>
     <glob pattern="*.phtml"/>
   </mime-type>
 </mime-info>
