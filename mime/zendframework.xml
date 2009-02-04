@@ -3,7 +3,6 @@
   <mime-type type="application/x-php">
     <comment>PHTML Template</comment>
     <sub-class-of type="text/plain"/>
-    <generic-icon name="text-x-script"/>
     <glob pattern="*.phtml"/>
   </mime-type>
 </mime-info>
