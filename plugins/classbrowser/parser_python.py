@@ -12,7 +12,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, 
+# Foundation, Inc., 59 Temple Place, Suite 330,
 # Boston, MA 02111-1307, USA.
 
 import gtk
@@ -31,7 +31,7 @@ def functionTokenFromString(string):
         a tuple containing information about the function, or None if the
         parsing failed.
 
-        Example: 
+        Example:
             "#def foo(bar):" would return :
             {'comment':True,'type':"def",'name':"foo",'params':"bar" } """
 
@@ -51,7 +51,7 @@ def functionTokenFromString(string):
 #===============================================================================
 
 class Token:
-    """ Rules: 
+    """ Rules:
             type "attribute" may only be nested to "class"
     """
 
@@ -75,7 +75,7 @@ class Token:
         self.parent = None
         self.children = [] # a list of nested tokens
         self.attributes = [] # a list of class attributes
-        
+
 
     def get_endline(self):
         """ Get the line number where this token's declaration, including all
@@ -86,24 +86,24 @@ class Token:
 
         def test_nested():
             pass
-            
+
     def get_toplevel_class(self):
         """ Try to get the class a token is in. """
-            
+
         if self.type == "class":
-            return self    
+            return self
 
         if self.parent is not None:
             tc = self.parent.get_toplevel_class()
             if tc is None or tc.type == "file": return self #hack
             else: return tc
-                
+
         return None
 
     def printout(self):
         for r in range(self.indent): print "",
         print self.name,
-        if self.parent: print " (parent: ",self.parent.name       
+        if self.parent: print " (parent: ",self.parent.name
         else: print
         for tok in self.children: tok.printout()
 
@@ -127,7 +127,7 @@ class PythonFile(Token):
         for token in self.tokens:
             if token.start <= line and token.end > line:
                 return token
-        return None          
+        return None
 
     def parse(self, verbose=True):
 
@@ -156,9 +156,9 @@ class PythonFile(Token):
 
                 token = functionTokenFromString(lstrip)
                 if token is None: continue
-                token.indent = len(line)-len(lstrip) 
+                token.indent = len(line)-len(lstrip)
                 token.pythonfile = self
-                
+
                 token.original = line
 
                 # set start and end line of a token. The end line will get set
@@ -205,19 +205,19 @@ class PythonFile(Token):
                 indent = token.indent
 
             # not a class or function definition
-            else: 
-                
+            else:
+
                 # check for class attributes, append to last class in last token
                 try:
                     # must match "self.* ="
                     if ln[0][:5] == "self." and ln[1] == "=":
-                    
+
                         # make sure there is only one dot in the declaration
                         # -> attribute is direct descendant of the class
                         if lastToken and ln[0].count(".") == 1:
                             attr = ln[0].split(".")[1]
                             self.__appendClassAttribute(lastToken,attr,linecount)
-                        
+
                 except IndexError: pass
 
         # set the ending line of the last token
@@ -230,16 +230,16 @@ class PythonFile(Token):
 
     def __appendClassAttribute(self, token, attrName, linenumber):
         """ Append a class attribute to the class a given token belongs to. """
-        
+
         # get next parent class
         while token.type != "class":
             token = token.parent
-            if not token: return   
-            
+            if not token: return
+
         # make sure attribute is not set yet
         for i in token.attributes:
             if i.name == attrName: return
-                     
+
         # append a new attribute
         attr = Token()
         attr.type = "attribute"
@@ -248,19 +248,19 @@ class PythonFile(Token):
         attr.end = linenumber
         attr.pythonfile = self
         token.attributes.append(attr)
-        
+
 #===============================================================================
 
 class PythonParser( ClassParserInterface ):
     """ A class parser that uses ctags.
-    
+
     Note that this is a very rough and hackish implementation.
     Feel free to improve it.
-    
+
     See http://ctags.sourceforge.net for more information about exuberant ctags,
     and http://ctags.sourceforge.net/FORMAT for a description of the file format.
     """
-    
+
     def __init__(self, geditwindow):
         self.geditwindow = geditwindow
         self.pythonfile = None
@@ -269,23 +269,23 @@ class PythonParser( ClassParserInterface ):
     def appendTokenToBrowser(self, token, parentit ):
         it = self.__browsermodel.append(parentit,(token,))
         token.path = self.__browsermodel.get_path(it)
-        
+
         # add special subtree for attributes
         if len(token.attributes) > 0:
-        
+
             holder = Token()
             holder.name = "Attributes"
             holder.type = "attribute"
             it2 = self.__browsermodel.append(it,(holder,))
-            
+
             for child in token.attributes   :
                 self.__browsermodel.append(it2,(child,))
-        
+
         #if token.parent:
         #    if token.parent.expanded:
         #        self.browser.expand_row(token.parent.path,False)
         #        pass
-        
+
         for child in token.children:
             self.appendTokenToBrowser(child, it)
 
@@ -293,48 +293,48 @@ class PythonParser( ClassParserInterface ):
     def get_menu(self, model, path):
         """ The context menu is expanded if the python tools plugin and
             bicyclerepairman are available. """
-    
+
         menuitems = []
-    
+
         try: tok = model.get_value( model.get_iter(path), 0 )
         except: tok = None
         pt = self.geditwindow.get_data("PythonToolsPlugin")
         tagposition = self.get_tag_position(model,path)
-        
+
         if pt and tok and tagposition:
-        
+
             filename, line = tagposition # unpack the location of the token
             if tok.type in ["def","class"] and filename[:7] == "file://":
-            
-                print tok.original
-            
+
+                # print tok.original
+
                 # trunkate to local filename
                 filename = filename[7:]
                 column = tok.original.find(tok.name) # find beginning of function definition
-                print filename, line, column
-                
+                # print filename, line, column
+
                 item = gtk.MenuItem("Find References")
                 menuitems.append(item)
                 item.connect("activate",lambda w: pt.brm.findReferencesDialog(filename,line,column))
-            
+
         return menuitems
 
 
     def parse(self, doc):
-        """ 
+        """
         Create a gtk.TreeModel with the class elements of the document
-        
+
         The parser uses the ctags command from the shell to create a ctags file,
         then parses the file, and finally populates a treemodel.
         """
-    
+
         self.pythonfile = PythonFile(doc)
         self.pythonfile.parse(options.singleton().verbose)
         self.__browsermodel = gtk.TreeStore(gobject.TYPE_PYOBJECT)
         for child in self.pythonfile.children:
             self.appendTokenToBrowser(child,None)
         return self.__browsermodel
-        
+
 
     def get_tag_position(self, model, path):
         tok = model.get_value( model.get_iter(path), 0 )
@@ -361,7 +361,7 @@ class PythonParser( ClassParserInterface ):
                     if options.singleton().verbose:
                         print "PythonParser: refresh because line cound changed near keyword"
                     self.pythonfile.parse()
- 
+
 
     def get_tag_at_line(self, model, doc, linenumber):
         t = self.pythonfile.getTokenAtLine(linenumber)
@@ -414,5 +414,3 @@ class PythonParser( ClassParserInterface ):
 
 
         crp.set_property("pixbuf",imagelibrary.pixbufs[icon])
-
-        

@@ -12,7 +12,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, 
+# Foundation, Inc., 59 Temple Place, Suite 330,
 # Boston, MA 02111-1307, USA.
 
 import gtk
@@ -26,14 +26,14 @@ import options
 
 class CTagsParser( ClassParserInterface ):
     """ A class parser that uses ctags.
-    
+
     Note that this is a very rough and hackish implementation.
     Feel free to improve it.
-    
+
     See http://ctags.sourceforge.net for more information about exuberant ctags,
     and http://ctags.sourceforge.net/FORMAT for a description of the file format.
     """
-    
+
     def __init__(self):
         self.model = None
         self.document = None
@@ -41,64 +41,64 @@ class CTagsParser( ClassParserInterface ):
 
     def parse(self, doc):
         """ Create a gtk.TreeModel with the tags of the document.
-         
+
         The TreeModel contains:
            token name, source file path, line in the source file, type code
 
         If the second str contains an empty string, it means that
-        the element has no 'physical' position in a file (see get_tag_position)        
+        the element has no 'physical' position in a file (see get_tag_position)
         """
-    
+
         self.model = gtk.TreeStore(str,str,int,str) # see __parse_to_model
         self.document = doc
         self.__parse_doc_to_model()
         return self.model
-        
-        
+
+
     def __parse_doc_to_model(self):
         """ Parse the given document and write the tags to a gtk.TreeModel.
-        
+
         The parser uses the ctags command from the shell to create a ctags file,
-        then parses the file, and finally populates a treemodel.        
+        then parses the file, and finally populates a treemodel.
         """
-        
-        # refactoring noise    
+
+        # refactoring noise
         doc = self.document
-        ls = self.model        
+        ls = self.model
         ls.clear()
-        
+
         # make sure this is a local file (ie. not via ftp or something)
         try:
             if doc.get_uri()[:4] != "file": return ls
         except:
             return
-        
+
         docpath = doc.get_uri_for_display()
         path, filename = os.path.split(docpath)
         if filename.find(".") != -1:
             arg = path + os.sep + filename[:filename.rfind(".")] + ".*"
         else:
             arg = docpath
-            
+
         # simply replacing blanks is the best variant because both gnomevfs
         # and the fs understand it.
         arg = arg.replace(" ","\ ")
-        
+
         # create tempfile
         h, tmpfile = tempfile.mkstemp()
-        
+
         # launch ctags
         command = "ctags -n -f %s %s"%(tmpfile,arg)
         os.system(command)
-        
-        print "command:",command
-        
+
+        # print "command:",command
+
         # create list of tokens from the ctags file-------------------------
-        
+
         # A list of lists. Matches the order found in tag files.
         # identifier, path to file, line number, type, and then more magical things
-        tokenlist = [] 
-        
+        tokenlist = []
+
         h = open(tmpfile)
         enumcounter = 0
         for r in h.readlines():
@@ -107,77 +107,77 @@ class CTagsParser( ClassParserInterface ):
 
             # convert line numbers to an int
             tokens[2] =  int(filter( lambda x: x in '1234567890', tokens[2] ))
-            
+
             # prepend container elements, append member elements. Do this to
             # make sure that container elements are created first.
             if self.__is_container(tokens): tokenlist = [tokens] + tokenlist
             else: tokenlist.append(tokens)
-            
+
             # hack: remember the number of enums without parents for later grouping
             if self.__get_type(tokens) == 'e' and self.__get_parent(tokens) == None:
                 enumcounter += 1
 
         # add tokens to the treestore---------------------------------------
         containers = { None: None } # keep dict: token's name -> treeiter
-        
+
         #if enumcounter > 0:
-        #    node = ls.append( None, ["Enumerators","",0,""] ) 
+        #    node = ls.append( None, ["Enumerators","",0,""] )
         #    containers["Enumerators"] = node
-        
+
         # used to sort the list of tokens by file, then by line number
         def cmpfunc(a,b):
             # by filename
             #if a[1] < b[1]: return -1
             #if a[1] > a[1]: return 1
-            
+
             # by line number
             if a[2] < b[2]: return -1
             if a[2] > b[2]: return 1
             return 0
-        
-        
+
+
         # iterate through the list of tags, sorted by their line number
         # a token is a list. Order matches tag file order (name,path,line,type,...)
         for tokens in sorted(tokenlist,cmpfunc):
-        
+
             # skip enums
             if self.__get_type(tokens) in 'de': continue
 
             #print self.__get_type(tokens),tokens[0],self.__get_parent(tokens)
-        
+
             # append current token to parent iter, or to trunk when there is none
             parent = self.__get_parent(tokens)
-            
+
             # hack: group enums without parents:
             if parent is None and self.__get_type(tokens) == 'e': parent = "Enumerators"
-            
+
             if parent in containers: node = containers[parent]
             else:
                 # create a dummy element in case the parent doesn't exist
                 node = ls.append( None, [parent,"",0,""] )
                 containers[parent] = node
-            
+
             # escape blanks in file path
             tokens[1] = str( gnomevfs.get_uri_from_local_path(tokens[1]) )
-            
-            
+
+
             # make sure tokens[4] contains type code
             if len(tokens) == 3: tokens.append("")
             else: tokens[3] = self.__get_type(tokens)
-            
+
             # append to treestore
             it = ls.append( node, tokens[:4] )
-            
+
             # if this element was a container, remember it's treeiter
             if self.__is_container(tokens): containers[tokens[0]] = it
-            
+
         # remove temp file
         os.remove(tmpfile)
-        
+
         #print "------------------"
-        
-        
-        
+
+
+
     def get_tag_position(self, model, path):
         filepath = model.get_value( model.get_iter(path), 1 )
         linenumber = model.get_value( model.get_iter(path), 2 )
@@ -189,38 +189,38 @@ class CTagsParser( ClassParserInterface ):
         """ Return a treepath to the tag at the given line number, or None if a
         tag can't be found.
         """
-        
+
         if doc is None: return
-        
+
         self.minline = -1
         self.tagpath = None
-        
+
         def loopfunc(model, path, it):
             if model.get_value(it,1) != doc.get_uri_for_display(): return
             l = model.get_value(it,2)
             if l >= self.minline and l <= linenumber+1:
                 self.tagpath = path
                 self.minline = l
-        
+
     # recursively loop through the treestore
         model.foreach(loopfunc)
-        
+
         if self.tagpath is None:
             it = model.get_iter_root()
             return model.get_path(it)
-        
+
         return self.tagpath
-        
-        
+
+
     def get_menu(self, model, path):
         m = gtk.ImageMenuItem(gtk.STOCK_REFRESH)
         m.connect("activate", lambda w: self.__parse_doc_to_model() )
         return [m]
-        
-        
+
+
     def __get_type(self, tokrow):
         """ Returns a char representing the token type or False if none were found.
-        
+
         According to the ctags docs, possible types are:
 		c	class name
 		d	define (from #define XXX)
@@ -233,19 +233,19 @@ class CTagsParser( ClassParserInterface ):
 		s	structure name
 		t	typedef
 		u	union name
-		v	variable        
+		v	variable
         """
         if len(tokrow) == 3: return
         for i in tokrow[3:]:
             if len(i) == 1: return i # most common case: just one char
             elif i[:4] == "kind": return i[5:]
-        return ' '  
-        
+        return ' '
+
     def __is_container(self, tokrow):
         """ class, enumerations, structs and unions are considerer containers """
         if self.__get_type(tokrow) in 'cgsu': return True
         return False
-        
+
     def __get_parent(self, tokrow):
         if len(tokrow) == 3: return
         for i in tokrow[3:]:
@@ -257,7 +257,7 @@ class CTagsParser( ClassParserInterface ):
     def cellrenderer(self, column, ctr, model, it):
         i = model.get_value(it,0)
         ctr.set_property("text", i)
-        
+
         elements = {
             "c":"class",
             "f":"function",
@@ -270,9 +270,9 @@ class CTagsParser( ClassParserInterface ):
         try: colour = options.singleton().colours[ elements[i] ]
         except: colour = gtk.gdk.Color(0,0,0)
         ctr.set_property("foreground-gdk", colour)
-        
+
     def pixbufrenderer(self, column, crp, model, it):
-        
+
         elements = {
             "c":"class", #class name
             "d":"define", #define (from #define XXX)

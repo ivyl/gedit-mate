@@ -33,7 +33,7 @@ end]]></text>
     <text><![CDATA[assert_redirected_to :action => "${1:index}"]]></text>
   </snippet>
   <snippet>
-    <tag>as</tag>
+    <tag>assert</tag>
     <description>assert(..)</description>
     <text><![CDATA[assert(${1:test}, "${2:message}")]]></text>
   </snippet>
@@ -133,7 +133,7 @@ end]]></text>
     <text><![CDATA[assert_throws(:${1:expected}) { ${0} }]]></text>
   </snippet>
   <snippet>
-    <tag>b</tag>
+    <tag>rdoc</tag>
     <description>New Block</description>
     <text><![CDATA[=begin rdoc
 	${0}
@@ -163,11 +163,11 @@ end]]></text>
     <text><![CDATA[class ${1:ClassName} < DelegateClass(${2:ParentClass})
 	def initialize${1}
 		super(${3:del_obj})
-		
+
 		${0}
 	end
-	
-	
+
+
 end]]></text>
   </snippet>
   <snippet>
@@ -177,8 +177,8 @@ end]]></text>
 	def initialize${1}
 		${0}
 	end
-	
-	
+
+
 end]]></text>
   </snippet>
   <snippet>
@@ -187,11 +187,11 @@ end]]></text>
     <text><![CDATA[class ${1:ClassName} < Struct.new(:${2:attr_names})
 	def initialize(*args)
 		super
-		
+
 		${0}
 	end
-	
-	
+
+
 end]]></text>
   </snippet>
   <snippet>
@@ -201,8 +201,8 @@ end]]></text>
 	def initialize${1}
 		${0}
 	end
-	
-	
+
+
 end]]></text>
   </snippet>
   <snippet>
@@ -217,18 +217,18 @@ end]]></text>
     <description>class BlankSlate .. initialize .. end</description>
     <text><![CDATA[class ${1:BlankSlate}
 	instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
-	
+
 	def initialize${1}
 		@${3:delegate} = ${delegate_object}
-		
+
 		${0}
 	end
-	
+
 	def method_missing(meth, *args, &block)
 		@${3}.send(meth, *args, &block)
 	end
-	
-	
+
+
 end]]></text>
   </snippet>
   <snippet>
@@ -318,11 +318,6 @@ end]]></text>
     <tag>eac</tag>
     <description>each_cons(..) { |group| .. }</description>
     <text><![CDATA[each_cons(${1:2}) { |${2:group}| ${0} }]]></text>
-  </snippet>
-  <snippet>
-    <tag>each</tag>
-    <description>each element</description>
-    <text><![CDATA[each { |${1:element}| ${1}.${0} }]]></text>
   </snippet>
   <snippet>
     <tag>eachwithindex</tag>
@@ -415,16 +410,9 @@ end]]></text>
     <text><![CDATA[inject(Array.new) { |${1:arr}, ${2:a}| ${1}.push(*${a}) }]]></text>
   </snippet>
   <snippet>
-    <tag>flash</tag>
+    <tag>f</tag>
     <description>flash[…]</description>
     <text><![CDATA[flash[:${1:notice}] = "${2:Successfully}"${0}]]></text>
-  </snippet>
-  <snippet>
-    <tag>forin</tag>
-    <description>for … in … end</description>
-    <text><![CDATA[for ${1:element} in ${2:collection}
-	${1}.${0}
-end]]></text>
   </snippet>
   <snippet>
     <tag>Forw</tag>
@@ -442,7 +430,7 @@ end]]></text>
     <text><![CDATA[gsub(/${1:pattern}/) { |${2:match}|${0} }]]></text>
   </snippet>
   <snippet>
-    <tag>habtm</tag>
+    <tag>hbtm</tag>
     <description>has_and_belongs_to_many</description>
     <text><![CDATA[has_and_belongs_to_many :${1:object}]]></text>
   </snippet>
@@ -450,11 +438,6 @@ end]]></text>
     <tag>Hash</tag>
     <description>Hash.new { |hash, key| hash[key] = .. }</description>
     <text><![CDATA[Hash.new { |${1:hash}, ${2:key}| ${1}[${2}] = ${0} }]]></text>
-  </snippet>
-  <snippet>
-    <tag>HashPointer</tag>
-    <description>Hash Pointer — =&gt;</description>
-    <text><![CDATA[ => ]]></text>
   </snippet>
   <snippet>
     <tag>hm</tag>
@@ -470,11 +453,6 @@ end]]></text>
     <tag>inj</tag>
     <description>inject(init) { |mem, var| .. }</description>
     <text><![CDATA[inject(${1:init}) { |${2:mem}, ${3:var}| ${0} }]]></text>
-  </snippet>
-  <snippet>
-    <tag>inject</tag>
-    <description>inject object</description>
-    <text><![CDATA[inject(${1:object}) { |${2:injection}, ${3:element}| ${4} }${0}]]></text>
   </snippet>
   <snippet>
     <tag>lam</tag>
@@ -574,16 +552,17 @@ end]]></text>
     <description>module .. ClassMethods .. end</description>
     <text><![CDATA[module ${1:ModuleName}
 	module ClassMethods
-		${0}
+		$0
 	end
-	
-	extend ClassMethods
-	
+
+	module InstanceMethods
+
+	end
+
 	def self.included(receiver)
-		receiver.extend(ClassMethods)
+		receiver.extend         ClassMethods
+		receiver.send :include, InstanceMethods
 	end
-	
-	
 end]]></text>
   </snippet>
   <snippet>
@@ -598,7 +577,7 @@ end]]></text>
     <description>module .. module_function .. end</description>
     <text><![CDATA[module ${1:ModuleName}
 	module_function
-	
+
 	${0}
 end]]></text>
   </snippet>
@@ -648,20 +627,20 @@ options = OpenStruct.new(${1:default})
 
 ARGV.options do |opts|
 	opts.banner = "Usage:  #{File.basename($$PROGRAM_NAME)}  [OPTIONS]${1}"
-	
+
 	opts.separator ""
 	opts.separator "Specific Options:"
-	
+
 	${0}
-	
+
 	opts.separator "Common Options:"
-	
+
 	opts.on( "-h", "--help",
 	         "Show this message." ) do
 		puts opts
 		exit
 	end
-	
+
 	begin
 		opts.parse!
 	rescue
@@ -889,11 +868,6 @@ end
     <text><![CDATA[select { |${1:e}| ${0} }]]></text>
   </snippet>
   <snippet>
-    <tag>select</tag>
-    <description>select element</description>
-    <text><![CDATA[select { |${1:element}| ${1}.${2} }${0}]]></text>
-  </snippet>
-  <snippet>
     <tag>session</tag>
     <description>session[…]</description>
     <text><![CDATA[session[:${1:User}]]]></text>
@@ -959,13 +933,6 @@ require "tc_${2:test_case_file}"
     <tag>uni</tag>
     <description>unix_filter { .. }</description>
     <text><![CDATA[ARGF.each_line${1} do |${2:line}|
-	${0}
-end]]></text>
-  </snippet>
-  <snippet>
-    <tag>unless</tag>
-    <description>unless … end</description>
-    <text><![CDATA[unless ${1:condition}
 	${0}
 end]]></text>
   </snippet>
@@ -1206,7 +1173,7 @@ end]]></text>
   </snippet>
   <snippet override="ruby-:">
     <text><![CDATA[:${1:key} => $0]]></text>
-    <tag>kv</tag>
+    <tag>k</tag>
     <description>hash pair</description>
   </snippet>
   <snippet>
@@ -1229,8 +1196,71 @@ end]]></text>
     <description>Rspec describe</description>
   </snippet>
   <snippet>
-    <text><![CDATA[self.$0]]></text>
-    <tag>.</tag>
-    <description>self</description>
+    <text><![CDATA[before_save :${0:method}]]></text>
+    <tag>bs</tag>
+    <description>before_save</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[before_update :${0:method}]]></text>
+    <tag>bu</tag>
+    <description>before_update</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[before_create :${0:method}]]></text>
+    <tag>bc</tag>
+    <description>before_create</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[after_save :${0:method}]]></text>
+    <tag>as</tag>
+    <description>after_save</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[after_update :${0:method}]]></text>
+    <tag>au</tag>
+    <description>after_update</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[after_create :${0:method}]]></text>
+    <tag>ac</tag>
+    <description>after_create</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[after_destroy :${0:method}]]></text>
+    <tag>ad</tag>
+    <description>after_destroy</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[before_destroy :${0:method}]]></text>
+    <tag>bd</tag>
+    <description>before_destroy</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[test '$1' do
+ $0
+end]]></text>
+    <tag>test</tag>
+    <description>test</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[validates_inclusion_of :${1:attribute}, :${2:in} => ${3:range}]]></text>
+    <tag>vi</tag>
+    <description>validates_inclusion_of</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[# => $1]]></text>
+    <tag>#</tag>
+    <description>Add a # =&gt; Marker</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[:${1:key} => "${2:value}"]]></text>
+    <accelerator><![CDATA[<Shift><Control>l]]></accelerator>
+    <description>Hash Pair :key =&gt; "value"</description>
+  </snippet>
+  <snippet override="ruby-hashpointer">
+    <text><![CDATA[ => ]]></text>
+    <tag>l</tag>
+    <description>hash pointer</description>
+    <accelerator><![CDATA[<Shift><Alt>l]]></accelerator>
   </snippet>
 </snippets>

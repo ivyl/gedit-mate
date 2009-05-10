@@ -157,7 +157,7 @@ $0]]></text>
     <text><![CDATA[<${1:div}>
 	${2:$GEDIT_SELECTED_TEXT}
 </${1}>$0]]></text>
-    <tag>&lt;</tag>
+    <tag>tag</tag>
     <description>Tag</description>
     <accelerator><![CDATA[<Shift><Control><Alt>t]]></accelerator>
   </snippet>
@@ -247,5 +247,49 @@ $0]]></text>
     <text><![CDATA[<h${2:1}>${1:content}</h$2>$0]]></text>
     <tag>h</tag>
     <description>header</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<% content_for :${1:place} do -%>
+	<%= ${2:output} %>
+<% end -%>]]></text>
+    <tag>cfd</tag>
+    <description>Content for block</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<%= content_for :${1:place}, "${2:content}" %>]]></text>
+    <tag>cf</tag>
+    <description>Content for</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<%= link_to_function '${1:function}', ${2:javascript} %>$0]]></text>
+    <tag>ltf</tag>
+    <description>link to function</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<${1:span}>${2:$GEDIT_SELECTED_TEXT}</${1}>$0]]></text>
+    <tag>tagi</tag>
+    <description>Tag inline</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<%= t ${1:text} %>$0]]></text>
+    <tag>t</tag>
+    <description>translated text</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<%= l ${1:text} %>$0]]></text>
+    <tag>l</tag>
+    <description>localized text</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<%= render ${1:@object} %>$0]]></text>
+    <tag>r</tag>
+    <description>render</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<% field_set_tag '${1:legend}' do -%>
+  $0
+<% end -%>]]></text>
+    <tag>fs</tag>
+    <description>field_set_tag</description>
   </snippet>
 </snippets>

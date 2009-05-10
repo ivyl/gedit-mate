@@ -18,6 +18,14 @@
     <glob pattern="Rakefile"/>
   </mime-type>
   <mime-type type="application/x-ruby">
+    <comment>Capistrano Deployment File</comment>
+    <glob pattern="Capfile"/>
+  </mime-type>
+  <mime-type type="application/x-ruby">
+    <comment>Rackup File</comment>
+    <glob pattern="*.ru"/>
+  </mime-type>
+  <mime-type type="application/x-ruby">
     <comment>Ruby Rake Task</comment>
     <glob pattern="*.rake"/>
   </mime-type>
@@ -29,6 +37,10 @@
   <mime-type type="text/x-yaml">
     <comment>YAML Ain't Markup Language</comment>
     <glob pattern="*.yml"/>
+  </mime-type>
+  <mime-type type="text/x-cucumber">
+    <comment>Cucumber feature plain text file</comment>
+    <glob pattern="*.feature"/>
   </mime-type>
 </mime-info>
 
