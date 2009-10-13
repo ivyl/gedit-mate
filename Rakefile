@@ -1,3 +1,4 @@
+require 'ftools'
 include FileUtils
 GEDIT = File.join ENV['HOME'], '.gnome2/gedit/'
 
@@ -9,15 +10,18 @@ namespace :install do
       cp_r dir, GEDIT
     end
   end
-  
+
   desc 'install lang-specs, mime types and \'g\', command needs root priviliges'
   task :global do
-    cp 'mime/rails.xml', '/usr/share/mime/packages/'
-    %w(rhtml.lang ruby.lang yml.lang).each do |file|
-      cp 'lang-specs/' + file, '/usr/share/gtksourceview-2.0/language-specs/'
+    Dir.glob("mime/*.xml") do |file|
+        # Copy all files except rst.xml, it doesn't seem to be valid.
+        cp file, '/usr/share/mime/packages/' unless file == 'mime/rst.xml'
+    end
+    Dir.glob("lang-specs/*.lang") do |file|
+        cp file, '/usr/share/gtksourceview-2.0/language-specs/'
     end
     cp 'bin/g', '/usr/bin/g'
     print `update-mime-database /usr/share/mime`
-  end    
+  end
 end
 
