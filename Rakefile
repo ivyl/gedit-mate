@@ -1,4 +1,9 @@
-require 'ftools'
+if RUBY_VERSION < "1.9"
+  require 'ftools'
+else
+  require 'fileutils'
+end
+
 include FileUtils
 GEDIT = File.join ENV['HOME'], '.gnome2/gedit/'
 
