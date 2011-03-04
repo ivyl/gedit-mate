@@ -35,6 +35,7 @@ Don't forget about plugins from gedit standard distribution:
 - Snippets
 
 Additional snippets(to browse them use snippet browser):
+
 - CSS
 - Cucumber
 - ERB
@@ -50,6 +51,7 @@ Additional snippets(to browse them use snippet browser):
 - XML
 
 Highlighting for:
+
 - RHTML/ERB
 - Ruby
 - Yaml
