@@ -11,7 +11,7 @@ sudo cp lang-specs/*.lang /usr/share/gtksourceview-2.0/language-specs/
 # Update mime type database
 sudo update-mime-database /usr/share/mime
 # Copy gedit start script
-sudo cp bin/g /usr/bin/g
+sudo ln -s bin/g /usr/bin/g
 
 # Copy gedit facilities
 if [ ! -d $HOME/.gnome2/gedit ]

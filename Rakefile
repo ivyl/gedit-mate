@@ -25,7 +25,7 @@ namespace :install do
     Dir.glob("lang-specs/*.lang") do |file|
         cp file, '/usr/share/gtksourceview-2.0/language-specs/'
     end
-    cp 'bin/g', '/usr/bin/g'
+    ln 'bin/g', '/usr/bin/g'
     chmod 0755, '/usr/bin/g', :verbose => true
     print `update-mime-database /usr/share/mime`
   end
