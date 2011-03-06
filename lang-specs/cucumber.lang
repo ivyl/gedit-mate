@@ -51,6 +51,10 @@
     <context id="key-pt" style-ref="keyword">
       <match>^\s*(Característica|Funcionalidade|Para|Como\s[Uu]m|Eu\s[Qq]uero|Cenário|Dado|Quando|Então|E|Mas|Contexto)</match>
     </context>
+    
+    <context id="key-pl" style-ref="keyword">
+      <match>^\s*(Właściwość|Założenia|(Szablon\s)?[Ss]cenariusza?|Przykałdy|Zakładając|Mając|Jeżeli|Jeśli|Wtedy|Oraz|I|Ale)</match>
+    </context>
 
     <context id="cucumber">
       <include>

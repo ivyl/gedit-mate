@@ -60,4 +60,3 @@ Mime types for rails.
 Have fun!
 
 Based on GMate by lexrupy.
-

@@ -7,7 +7,7 @@
 	</mime-type>
 	<mime-type type="text/x-scss">
 		<sub-class-of type="text/css"/>
-		<comment>Scss - CSS templating language</comment>
+		<comment>SCSS - CSS templating language</comment>
 		<glob pattern="*.scss"/>
 	</mime-type>
 </mime-info>
