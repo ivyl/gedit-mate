@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="php">
+  <snippet>
+    <text><![CDATA[$${1:arrayName} = array('$2'${3:,});]]></text>
+    <tag>array</tag>
+    <description>$.. = array</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};]]></text>
+    <tag>iff</tag>
+    <description>$.. =</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[case '${1:variable}':
+	# code...
+	$0
+break;]]></text>
+    <tag>case</tag>
+    <description>case ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[class ${1:ClassName} ${2:extends AnotherClass}
+{
+
+	function __construct (${3:argument})
+	{
+		$0
+	}
+
+}]]></text>
+    <tag>class</tag>
+    <description>class ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_COOKIE['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>COOKIE['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[do
+{
+	# code...
+	$0
+} while (${1:$a <= 10});]]></text>
+    <tag>do</tag>
+    <description>do .. while ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[else {
+	# code...
+	$0
+}]]></text>
+    <tag>else</tag>
+    <description>else ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[elseif (${1:condition}) {
+	# code...
+	$0
+}]]></text>
+    <tag>elseif</tag>
+    <description>elseif ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_ENV['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>ENV['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_FILES['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>FILES['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[for ($${1:i} = ${2:0}; $${1:i} < $3; $${1:i}++) {
+	# code...
+	$0
+}]]></text>
+    <tag>for</tag>
+    <description>for ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[foreach ($${1:variable} as $${2:key} => $${3:value}) {
+	# code...
+	$0:
+}]]></text>
+    <tag>foreach</tag>
+    <description>foreach ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[${1:public }function ${2:FunctionName}($3)
+{
+	${0:# code...}
+}]]></text>
+    <tag>function</tag>
+    <description>function ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_GET['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>GET['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$GLOBALS['${1:variable}']${2: =} ${3:something} ${4:;}]]></text>
+    <tag>globals</tag>
+    <description>$GLOBALS['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[if (${1:condition}) {
+	# code...
+	$0
+}]]></text>
+    <tag>if</tag>
+    <description>if ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[if (${1:condition}) {
+	${2:# code...}
+} else {
+	${3:# code...}
+}
+$0]]></text>
+    <tag>ifelse</tag>
+    <description>if .. else ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[include '${1:file}';$0]]></text>
+    <tag>incl</tag>
+    <description>include</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[include_once '${1:file}';$0]]></text>
+    <tag>inclo</tag>
+    <description>include_once</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[<?php
+
+]]></text>
+    <tag>php</tag>
+    <description>&lt;?php .. ?&gt;</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_POST['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>POST['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[print "${1:string}"${2: . };]]></text>
+    <tag>print</tag>
+    <description>print ".."</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_REQUEST['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>REQUEST['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[require('${1:file}');]]></text>
+    <tag>req</tag>
+    <description>require</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[require_once '${1:file}';]]></text>
+    <tag>reqo</tag>
+    <description>require_once</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_SERVER['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>SERVER['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[\$_SESSION['${1:variable}']]]></text>
+    <tag>$</tag>
+    <description>SESSION['..']</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[switch (${1:variable})
+{
+	case '${2:value}':
+		${3:# code...}
+	  break;
+
+	$0
+
+	default:
+		${4:# code...}
+	  break;
+}]]></text>
+    <tag>switch</tag>
+    <description>switch ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[while (${1:$a <= 10}) {
+	# code...
+	$0
+}]]></text>
+    <tag>while</tag>
+    <description>while ..</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->actionStack(${1:actionName}, ${2:controllerName}${3:moduleName}${4:array options});$0]]></text>
+    <tag>as</tag>
+    <description>ZF actionStack(action, controller[, ...])</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->actionStack(${1:request});$0]]></text>
+    <tag>as</tag>
+    <description>ZF actionStack(request)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->autoCompleteDojo(${1:data});$0]]></text>
+    <tag>acd</tag>
+    <description>ZF autoCompleteDojo(data)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->autoCompleteDojo->prepareAutoCompletion(${1:data});]]></text>
+    <tag>acd</tag>
+    <description>ZF autoCompleteDojo-&gt;prepareAutoCompletion(data)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->autoCompleteDojo->sendAutoCompletion(${1:data});]]></text>
+    <tag>acd</tag>
+    <description>ZF autoCompleteDojo-&gt;sendAutoCompletion(data)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->cache(${1:array actionNames}, ${2:array tags});$0]]></text>
+    <tag>cache</tag>
+    <description>ZF cache(array actions, array tags)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->cache->removePagesTagged(${1:array tags});$0]]></text>
+    <tag>rpt</tag>
+    <description>ZF cache-&gt;removePagesTagged(array tags)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->cache->removePage(${1:requestUri});$0]]></text>
+    <tag>rp</tag>
+    <description>ZF cache-&gt;removePage(url)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->cache->useCleaner(${1:cleanerName}, ${2:array actionNames});$0]]></text>
+    <tag>uc</tag>
+    <description>ZF cache-&gt;useCleaner(cleaner, array actions)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->contextSwitch()$0]]></text>
+    <tag>cs</tag>
+    <description>ZF contextSwitch()</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->contextSwitch()->addActionContext(${1:actionName}, ${2:context})$0]]></text>
+    <tag>csac</tag>
+    <description>ZF contextSwitch()-&gt;addActionContext(action, context)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[public function ${1:actionName}Action()
+{
+    ${2:/* code */}$0
+}]]></text>
+    <tag>action</tag>
+    <description>ZF Create action</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[class ${1:Zend}_Action_Helper_${2:name} extends Zend_Controller_Action_Helper_Abstract
+{
+
+    public function direct(${3:parameters})
+    {
+        ${4:/* code */}$0
+    }
+
+    public function preDispatch()
+    {
+
+    }
+
+    public function postDispatch()
+    {
+
+    }
+
+}]]></text>
+    <tag>actionhelper</tag>
+    <description>ZF Create action helper</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[class ${1:Zend}_Cache_Cleaner_${2:name} extends Zend_Cache_Cleaner_Abstract
+{
+
+    public function after${3:actionName}()
+    {
+        ${4: /* code */}
+    }
+
+}]]></text>
+    <tag>cleaner</tag>
+    <description>ZF Create cache cleaner</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[class ${1:controllerName}Controller extends Zend_Controller_Action
+{
+
+    public function init()
+    {
+        ${2:/* code */}
+    }
+
+    public function ${3:actionName}Action()
+    {
+        ${4:/* code */}$0
+    }
+
+}]]></text>
+    <tag>controller</tag>
+    <description>ZF Create controller</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[class ${1:name} extends Zend_Db_Table_Abstract
+{
+
+    protected $_name = '${2:tableName}';$0
+
+}]]></text>
+    <tag>model</tag>
+    <description>ZF Create table model</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[class ${1:Zend}_View_Helper_${2:name} extends Zend_View_Helper_Abstract
+{
+
+    public $view = null;
+
+    public function setView(Zend_View_Interface $view)
+    {
+        $this->view = $view;
+    }
+
+    public function $<return $2[0].lower() + $2[1:]>(${3:parameters})
+    {
+        $0
+    }
+
+}]]></text>
+    <tag>viewhelper</tag>
+    <description>ZF Create view helper</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->flashMessenger->addMessage(${1:message});$0]]></text>
+    <tag>fam</tag>
+    <description>ZF flashMessenger-&gt;addMessage(message)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->flashMessenger->getMessages();$0]]></text>
+    <tag>fgm</tag>
+    <description>ZF flashMessenger-&gt;getMessages()</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_forward(${1:actionName}, ${2:controllerName}, ${3:moduleName}, ${4:array parameters});$0]]></text>
+    <tag>fwd</tag>
+    <description>ZF _forward(action[, controller, ...])</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[->setActionContext(${1:actionName}, ${2:context})$0]]></text>
+    <tag>csac</tag>
+    <description>ZF -&gt;setActionContext(action, context)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->json(${1:data});$0]]></text>
+    <tag>json</tag>
+    <description>ZF json(data)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->json->encodeJson(${1:data}, ${2:bool useLayout});$0]]></text>
+    <tag>ejson</tag>
+    <description>ZF json-&gt;encodeJson(data)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_redirector->gotoRoute(${1:array params}, ${2:routeName});$0]]></text>
+    <tag>gotor</tag>
+    <description>ZF _redirector-&gt;gotoRoute(array params, route)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_redirector->gotoSimple(${1:actionName}, ${2:controllerName}, ${3:moduleName}, ${4:array params});$0]]></text>
+    <tag>gotos</tag>
+    <description>ZF _redirector-&gt;gotoSimple(action, controller, module, array params)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_redirector->gotoUrl(${1:url});$0]]></text>
+    <tag>goto</tag>
+    <description>ZF _redirector-&gt;gotoUrl(url)</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_redirect(${1:url}, ${2:array options});$0]]></text>
+    <tag>rd</tag>
+    <description>ZF _redirect(url[, array options])</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->viewRenderer->setNeverRender();]]></text>
+    <tag>nvr</tag>
+    <description>ZF setNeverRender()</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->viewRenderer->setNoRender();$0]]></text>
+    <tag>nr</tag>
+    <description>ZF setNoRender()</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[$this->_helper->viewRenderer(${1:templateFile});$0]]></text>
+    <tag>vr</tag>
+    <description>ZF viewRenderer(template)</description>
+  </snippet>
+</snippets>

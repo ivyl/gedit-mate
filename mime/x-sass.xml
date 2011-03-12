@@ -5,4 +5,9 @@
 		<comment>Sass - CSS templating language</comment>
 		<glob pattern="*.sass"/>
 	</mime-type>
+	<mime-type type="text/x-scss">
+		<sub-class-of type="text/css"/>
+		<comment>SCSS - CSS templating language</comment>
+		<glob pattern="*.scss"/>
+	</mime-type>
 </mime-info>

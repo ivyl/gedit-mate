@@ -25,5 +25,6 @@ MA 02110-1301, USA.
 		<comment xml:lang="fr">document Markdown</comment>
 		<sub-class-of type="text/plain"/>
 		<glob pattern="*.mdtxt"/>
+		<glob pattern="*.markdown"/>
 	</mime-type>
 </mime-info>
