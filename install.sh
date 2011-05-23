@@ -5,34 +5,34 @@
 # Register mime types
 sudo cp mime/*.xml /usr/share/mime/packages
 # Copy language definitions
-sudo cp lang-specs/*.lang /usr/share/gtksourceview-2.0/language-specs/
+sudo cp lang-specs/*.lang /usr/share/gtksourceview-3.0/language-specs/
 # Update mime type database
 sudo update-mime-database /usr/share/mime
 # Copy gedit start script
 sudo cp -s bin/g /usr/bin/g
 
 # Copy gedit facilities
-if [ ! -d $HOME/.gnome2/gedit ]
+if [ ! -d $HOME/.config/gedit ]
 then
-mkdir -p ~/.gnome2/gedit
+mkdir -p ~/.config/gedit
 fi
 # Copy Snippets
-if [ ! -d $HOME/.gnome2/gedit/snippets ]
+if [ ! -d $HOME/.config/gedit/snippets ]
 then
-mkdir -p ~/.gnome2/gedit/snippets
+mkdir -p ~/.config/gedit/snippets
 fi
-cp snippets/* ~/.gnome2/gedit/snippets/
+cp snippets/* ~/.config/gedit/snippets/
 
 # Copy Plugins
-if [ ! -d $HOME/.gnome2/gedit/plugins ]
+if [ ! -d $HOME/.config/gedit/plugins ]
 then
-mkdir -p ~/.gnome2/gedit/plugins
+mkdir -p ~/.config/gedit/plugins
 fi
-cp -R plugins/* ~/.gnome2/gedit/plugins
+cp -R plugins/* ~/.config/gedit/plugins
 
 # Copy Styles
-if [ ! -d $HOME/.gnome2/gedit/styles ]
+if [ ! -d $HOME/.config/gedit/styles ]
 then
-mkdir -p ~/.gnome2/gedit/styles
+mkdir -p ~/.config/gedit/styles
 fi
-cp styles/* ~/.gnome2/gedit/styles
+cp styles/* ~/.config/gedit/styles
