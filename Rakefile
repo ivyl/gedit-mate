@@ -5,7 +5,7 @@ else
 end
 
 include FileUtils
-GEDIT = File.join ENV['HOME'], '.gnome2/gedit/'
+GEDIT = File.join ENV['HOME'], '.config/gedit/'
 
 namespace :install do
   desc 'install snippets, plugins and styles locally'
@@ -23,7 +23,7 @@ namespace :install do
         cp file, '/usr/share/mime/packages/' unless file == 'mime/rst.xml'
     end
     Dir.glob("lang-specs/*.lang") do |file|
-        cp file, '/usr/share/gtksourceview-2.0/language-specs/'
+        cp file, '/usr/share/gtksourceview-3.0/language-specs/'
     end
     cp 'bin/g', '/usr/bin/g'
     chmod 0755, '/usr/bin/g', :verbose => true
