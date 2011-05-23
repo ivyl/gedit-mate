@@ -15,8 +15,8 @@ import os
 
 GLADE_FILE = os.path.join(os.path.dirname(__file__), "dialog.glade")
 
-DEFAULT_USE_SPACES = True
-DEFAULT_TAB_SIZE   = 4
+#DEFAULT_USE_SPACES = True
+#DEFAULT_TAB_SIZE   = 4
 
 gconf_base_uri = u"/apps/gedit-2/plugins/smart_indent"
 config_client = gconf.client_get_default()
