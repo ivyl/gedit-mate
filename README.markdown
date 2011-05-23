@@ -54,6 +54,8 @@ Additional snippets(to browse them use snippet browser):
 
 Highlighting for:
 
+- [Groovy]
+- [CoffeScript]
 - RHTML/ERB
 - [Ruby]
 - [YAML]
@@ -67,6 +69,7 @@ Have fun!
 
 Based on GMate by lexrupy.
 
+[Groovy]: http://groovy.codehaus.org/
 [Markdown]: http://daringfireball.net/projects/markdown/
 [YAML]: http://www.yaml.org/ "YAML Ain't Markup Language"
 [jQuery]: http://jquery.com/ "Easy, friendly and fast JavaScript library"
@@ -77,3 +80,4 @@ Based on GMate by lexrupy.
 [Shoulda]: http://thoughtbot.com/community/
 [Haml]: http://haml-lang.com/
 [Sass]: http://sass-lang.com/
+[CoffeScript]: http://jashkenas.github.com/coffee-script/
