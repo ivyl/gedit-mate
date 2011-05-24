@@ -1,0 +1,10 @@
+<ui>
+<popup name="FavoritesPopup">
+  <menuitem name="Open" action="Open"/>
+  <separator/>
+  <menuitem name="NewFolder" action="NewFolder"/>
+  <separator/>
+  <menuitem name="Rename" action="Rename"/>
+  <menuitem name="Remove" action="Remove"/>
+</popup>
+</ui>

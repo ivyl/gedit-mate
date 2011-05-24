@@ -14,6 +14,10 @@ Enable plugins in gedit preferences, choose font (monaco, consolas or DejaVu San
 
 # Plugins
 
+## Current
+- **Favorites** - add file to favorites, plugin by Quixotix.
+
+## To Be Ported
 - **Advanced Boomarks** - Advanced bookmarking tool.
 - **Align** - Align blocks of text into collumns.
 - **Class Browser** - Nothing to add.
@@ -24,11 +28,15 @@ Enable plugins in gedit preferences, choose font (monaco, consolas or DejaVu San
 - **Pastie** - Paste stuff to pastie.org directly from your editor.
 - **Rails Extract partial** - Extract Selected Text to a rails partial.
 - **Rails File Loader** - Detects if a file is a part of a rails partial.
-- **Reopen Tabs** - Editor will remember opened files.
 - **Smart Indent** - Smart Indentation Plugin for Gedit.
 - **Snapopen** - Opening files via regexps.
 - **Text Tools** - Text Manipulation enhancements.
+
+## gedit-plugins
+Those listed below (and more) can be found in [this GeditPlugins bundle](http://live.gnome.org/GeditPlugins).
+
 - **Word completion** - Complete words.
+- **Session Saver** - saves, restores sessions.
 
 # Extras
 

@@ -1,0 +1,11 @@
+[Plugin]
+Loader=python
+Module=favorites
+IAge=3
+Name=Favorites
+Description=Save your favorite documents for quick access.
+Authors=Micah Carrick <micah@quixotix.com>
+Copyright=Copyright © 2011 Micah Carrick
+Website=https://github.com/Quixotix/gedit-favorites
+Version=3.0.0
+

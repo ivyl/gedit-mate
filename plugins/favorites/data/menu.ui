@@ -1,0 +1,11 @@
+<ui>
+<menubar name="MenuBar">
+  <menu name="FileMenu" action="File">
+    <placeholder name="FileOps_4">
+      <separator/>
+      <menuitem name="AddToFavorites" action="AddToFavorites"/>
+    </placeholder>
+  </menu>
+</menubar>
+</ui>
+
