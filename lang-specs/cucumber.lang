@@ -45,7 +45,11 @@
     </context>
 
     <context id="key-en" style-ref="keyword">
-      <match>^\s*(Feature|In\s[Oo]rder|As\san?|I\s[Ww]ant|Scenario(\sOutline)?|Given|When|Then|And|But|Background)</match>
+      <match>^\s*(Feature|In\s[Oo]rder|As\san?|I\s[Ww]ant|Scenario(\sOutline)?|Given|When|Then|And|But|Background|Examples)</match>
+    </context>
+
+    <context id="key-es" style-ref="keyword">
+      <match>^\s*(Característica|Para|Como\s[Uu]n|Quiero|Escenario|Esquema\sdel\sescenario|Dado|Cuando|Entonces|Y|Pero|Antecedentes|Ejemplos)</match>
     </context>
 
     <context id="key-pt" style-ref="keyword">
@@ -61,6 +65,7 @@
         <context ref="string"/>
         <context ref="string-2"/>
         <context ref="key-en"/>
+        <context ref="key-es"/>
         <context ref="key-pt"/>
       </include>
     </context>
