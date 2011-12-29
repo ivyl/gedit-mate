@@ -2,6 +2,8 @@
 # Kill all runing instances if exists
 #killall gedit
 
+PREFIX=$HOME/.local/share/gedit
+
 # Register mime types
 sudo cp mime/*.xml /usr/share/mime/packages
 # Copy language definitions
@@ -9,30 +11,18 @@ sudo cp lang-specs/*.lang /usr/share/gtksourceview-3.0/language-specs/
 # Update mime type database
 sudo update-mime-database /usr/share/mime
 # Copy gedit start script
-sudo cp -s bin/g /usr/bin/g
+sudo cp bin/g /usr/bin/g
 
 # Copy gedit facilities
-if [ ! -d $HOME/.config/gedit ]
-then
-mkdir -p ~/.config/gedit
-fi
-# Copy Snippets
-if [ ! -d $HOME/.config/gedit/snippets ]
-then
-mkdir -p ~/.config/gedit/snippets
-fi
-cp snippets/* ~/.config/gedit/snippets/
+mkdir -p $PREFIX
+mkdir -p $PREFIX/snippets
+mkdir -p $PREFIX/plugins
+mkdir -p $PREFIX/styles
 
-# Copy Plugins
-if [ ! -d $HOME/.config/gedit/plugins ]
-then
-mkdir -p ~/.config/gedit/plugins
-fi
-cp -R plugins/* ~/.config/gedit/plugins
+cp snippets/* $PREFIX/snippets/
+cp -R plugins/* $PREFIX/plugins/
+cp styles/* $PREFIX/styles/
 
-# Copy Styles
-if [ ! -d $HOME/.config/gedit/styles ]
-then
-mkdir -p ~/.config/gedit/styles
-fi
-cp styles/* ~/.config/gedit/styles
+# Create link in .config (since some distributions still uses this)
+mkdir -p $HOME/.config
+ln -s $HOME/.local/share/gedit $HOME/.config/

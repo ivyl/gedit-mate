@@ -5,7 +5,7 @@ else
 end
 
 include FileUtils
-GEDIT = File.join ENV['HOME'], '.config/gedit/'
+GEDIT = File.join ENV['HOME'], '.local/share/gedit/'
 
 namespace :install do
   desc 'install snippets, plugins and styles locally'
@@ -14,6 +14,8 @@ namespace :install do
     %w(plugins snippets styles).each do |dir|
       cp_r dir, GEDIT
     end
+    # Create link in .config (since some distributions still uses this)
+    ln_s GEDIT, File.join(ENV['HOME'], '.config/')
   end
 
   desc 'install lang-specs, mime types and \'g\', command needs root priviliges'
