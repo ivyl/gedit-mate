@@ -1,5 +1,7 @@
 Gedit set of plugins, color shemes, snippets.
 
+This version is ment for Gedit 3 (from Gnome 3), if you are Gnome 2 user please check gedit2 branch.
+
 # Installation
 
     rake install:local
