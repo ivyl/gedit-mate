@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  Author: Ivan Kerin <kerin@rizn.info>
+ 
+ Comments support from c.lang by Marco Barisione and Emanuele Aina
+ Strings, at-rules & other definitions from css.lang by Scott Martin
+ Some reg. exp. patterns based on http://github.com/charlesr/ruby-sass-tmbundle
 -->
-<language id="sass" _name="SASS" version="2.0" _section="Others">
+<!--
+TODO:
+* extend at-rules with SASS specific keywords
+* Polish mixins highlighting to include brackets (messes with function)
+-->
+<language id="sass" _name="Sass" version="2.0" _section="Others">
   <metadata>
-    <property name="mimetypes">text/x-sass;text/x-scss</property>
-    <property name="globs">*.sass;*.scss</property>
+    <property name="mimetypes">text/x-sass</property>
+    <property name="globs">*.sass</property>
     <property name="line-comment-start">//</property>
     <property name="block-comment-start">/*</property>
     <property name="block-comment-end">*/</property>
   </metadata>
-
   <styles>
-    <style id="comment"                 _name="Comment"                 map-to="def:comment"/>
-    <style id="css-directives"          _name="CSS Directives"          map-to="def:keyword"/>
-    <style id="tag"                     _name="Tag"                     map-to="def:special-constant"/>
-    <style id="class-tag"               _name="Class Tag"               map-to="def:identifier"/>
-    <style id="id-tag"                  _name="Id Tag"                  map-to="def:identifier"/>
-    <style id="error"                   _name="Error"                   map-to="def:error"/>
-    <style id="keyword"                 _name="Keyword"                 map-to="def:keyword"/>
-    <style id="function"                _name="Function"                map-to="def:function"/>
-    <style id="known-property-values"   _name="Known Property Value"    map-to="def:string"/>
-    <style id="decimal"                 _name="Decimal"                 map-to="def:decimal"/>
-    <style id="dimension"               _name="Dimension"               map-to="def:floating-point"/>
-    <style id="color"                   _name="Color"                   map-to="def:base-n-integer"/>
-    <style id="constant"                _name="Constant"                map-to="def:type"/>
-    <style id="variable"		_name="Variable"		map-to="def:variable"/>
+    <style id="comment"     _name="Comment"              map-to="def:comment"/>
+    <style id="tag"         _name="Tag"                  map-to="def:constant"/>
+    <style id="class-tag"   _name="Class Tag"            map-to="def:identifier"/>
+    <style id="id-tag"      _name="Id Tag"               map-to="def:identifier"/>
+    <style id="variable"    _name="Variable"             map-to="def:type"/>
+    <style id="error"       _name="Error"                map-to="def:error"/>
+    <style id="keyword"     _name="Keyword"              map-to="def:keyword"/>
+    <style id="at-rules"    _name="At-Rules"             map-to="def:keyword"/>
+    <style id="function"    _name="Function"             map-to="def:function"/>    
+    <style id="known-value" _name="Known Property Value" map-to="def:type"/>
+    <style id="decimal"     _name="Decimal"              map-to="def:decimal"/>
+    <style id="dimension"   _name="Dimension"            map-to="def:floating-point"/>
+    <style id="color"       _name="Color"                map-to="def:base-n-integer"/>
   </styles>
-
+  
   <definitions>
-
-    <!-- Comments -->
+<!--    <context id="comment" style-ref="comment">
+      <match>^(  )*\/\/.*$</match>
+    </context> -->
+    
     <context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>//</start>
-      <include>
-        <context ref="def:in-line-comment"/>
-      </include>
+        <start>//</start>
+
+        <include>
+          <context ref="def:in-line-comment"/>
+        </include>
     </context>
 
-    <context id="multiline-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
-      <start>/\*</start>
-      <end>\*/</end>
-      <include>
-        <context ref="def:in-comment"/>
-      </include>
+    <context id="comment-multiline" style-ref="comment" class="comment" class-disabled="no-spell-check">
+        <start>/\*</start>
+        <end>\*/</end>
+        <include>
+            <context ref="def:in-comment"/>
+        </include>
     </context>
 
     <context id="close-comment-outside-comment" style-ref="error">
-      <match>\*/(?!\*)</match>
-    </context>
-
-    <context id="class-tag" style-ref="class-tag">
-      <match>\.[a-z][a-z0-9_-]*</match>
-    </context>
-
-    <context id="constant" style-ref="constant">
-      <match>\![a-zA-Z][a-zA-Z0-9_]*</match>
-    </context>
-
-    <context id="id-tag" style-ref="id-tag">
-      <match>#[a-z][a-z0-9_-]*</match>
+        <match>\*/(?!\*)</match>
     </context>
 
     <context id="identation-error">
@@ -67,6 +65,23 @@
       <include>
         <context sub-pattern="1" style-ref="error"/>
       </include>
+    </context>
+  
+    <context id="class-tag" style-ref="class-tag">
+      <match>(\.)[a-zA-Z][a-zA-Z0-9_-]*</match>
+    </context>
+
+    <context id="id-tag" style-ref="id-tag">
+      <match>(#)[a-zA-Z][a-zA-Z0-9_-]*</match>
+    </context>
+ 
+    <context id="at-rules" style-ref="at-rules">
+      <prefix>^[ \t]*@</prefix>
+      <keyword>charset</keyword>
+      <keyword>font-face</keyword>
+      <keyword>media</keyword>
+      <keyword>page</keyword>
+      <keyword>import</keyword>
     </context>
 
     <context id="selector-pseudo-elements" style-ref="function">
@@ -85,139 +100,12 @@
       <keyword>focus</keyword>
       <keyword>lang</keyword>
     </context>
-
+  
     <context id="property-names" style-ref="keyword">
-      <keyword>azimuth</keyword>
-      <keyword>background-attachment</keyword>
-      <keyword>background-color</keyword>
-      <keyword>background-image</keyword>
-      <keyword>background-position</keyword>
-      <keyword>background-repeat</keyword>
-      <keyword>background</keyword>
-      <keyword>border</keyword>
-      <keyword>border-bottom-color</keyword>
-      <keyword>border-bottom-style</keyword>
-      <keyword>border-bottom-width</keyword>
-      <keyword>border-bottom</keyword>
-      <keyword>border-collapse</keyword>
-      <keyword>border-color</keyword>
-      <keyword>border-left-color</keyword>
-      <keyword>border-left-style</keyword>
-      <keyword>border-left-width</keyword>
-      <keyword>border-left</keyword>
-      <keyword>border-right-color</keyword>
-      <keyword>border-right-style</keyword>
-      <keyword>border-right-width</keyword>
-      <keyword>border-right</keyword>
-      <keyword>border-spacing</keyword>
-      <keyword>border-style</keyword>
-      <keyword>style</keyword>
-      <keyword>border-top-color</keyword>
-      <keyword>border-top-style</keyword>
-      <keyword>border-top-width</keyword>
-      <keyword>border-top</keyword>
-      <keyword>border-width</keyword>
-      <keyword>border</keyword>
-      <keyword>bottom</keyword>
-      <keyword>caption-side</keyword>
-      <keyword>clear</keyword>
-      <keyword>clip</keyword>
-      <keyword>color</keyword>
-      <keyword>content</keyword>
-      <keyword>counter-increment</keyword>
-      <keyword>counter-reset</keyword>
-      <keyword>cue-after</keyword>
-      <keyword>cue-before</keyword>
-      <keyword>cue</keyword>
-      <keyword>cursor</keyword>
-      <keyword>direction</keyword>
-      <keyword>display</keyword>
-      <keyword>elevation</keyword>
-      <keyword>empty-cells</keyword>
-      <keyword>float</keyword>
-      <keyword>family</keyword>
-      <keyword>font-family</keyword>
-      <keyword>font-size-adjust</keyword>
-      <keyword>font-size</keyword>
-      <keyword>font-style</keyword>
-      <keyword>font-variant</keyword>
-      <keyword>font-weight</keyword>
-      <keyword>font</keyword>
-      <keyword>height</keyword>
-      <keyword>image</keyword>
-      <keyword>left</keyword>
-      <keyword>letter-spacing</keyword>
-      <keyword>line-height</keyword>
-      <keyword>list-style-image</keyword>
-      <keyword>list-style-position</keyword>
-      <keyword>list-style-type</keyword>
-      <keyword>list-style</keyword>
-      <keyword>margin</keyword>
-      <keyword>margin-bottom</keyword>
-      <keyword>margin-left</keyword>
-      <keyword>margin-right</keyword>
-      <keyword>margin-top</keyword>
-      <keyword>margin</keyword>
-      <keyword>marker-offset</keyword>
-      <keyword>marks</keyword>
-      <keyword>max-height</keyword>
-      <keyword>max-width</keyword>
-      <keyword>min-height</keyword>
-      <keyword>min-width</keyword>
-      <keyword>orphans</keyword>
-      <keyword>outline-color</keyword>
-      <keyword>outline-style</keyword>
-      <keyword>outline-width</keyword>
-      <keyword>outline</keyword>
-      <keyword>overflow</keyword>
-      <keyword>position</keyword>
-      <keyword>padding-bottom</keyword>
-      <keyword>padding-left</keyword>
-      <keyword>padding-right</keyword>
-      <keyword>padding-top</keyword>
-      <keyword>padding</keyword>
-      <keyword>page-break-after</keyword>
-      <keyword>page-break-before</keyword>
-      <keyword>page-break-inside</keyword>
-      <keyword>page</keyword>
-      <keyword>pause-after</keyword>
-      <keyword>pause-before</keyword>
-      <keyword>pause</keyword>
-      <keyword>pitch-range</keyword>
-      <keyword>pitch</keyword>
-      <keyword>play-during</keyword>
-      <keyword>position</keyword>
-      <keyword>quotes</keyword>
-      <keyword>richness</keyword>
-      <keyword>right</keyword>
-      <keyword>size</keyword>
-      <keyword>speak-header</keyword>
-      <keyword>speak-numerical</keyword>
-      <keyword>speak-punctuation</keyword>
-      <keyword>speak</keyword>
-      <keyword>speech-rate</keyword>
-      <keyword>stress</keyword>
-      <keyword>table-layout</keyword>
-      <keyword>text-align</keyword>
-      <keyword>text-decoration</keyword>
-      <keyword>text-indent</keyword>
-      <keyword>text-shadow</keyword>
-      <keyword>text-transform</keyword>
-      <keyword>top</keyword>
-      <keyword>unicode-bidi</keyword>
-      <keyword>vertical-align</keyword>
-      <keyword>visibility</keyword>
-      <keyword>voice-family</keyword>
-      <keyword>volume</keyword>
-      <keyword>white-space</keyword>
-      <keyword>widows</keyword>
-      <keyword>width</keyword>
-      <keyword>word-spacing</keyword>
-      <keyword>z-index</keyword>
+      <match>:[^\s]+|[^\s]+(:|=)</match>
     </context>
 
-    <context id="known-property-values" style-ref="known-property-values">
-      <keyword>arial</keyword>
+    <context id="known-value" style-ref="known-value">
       <keyword>above</keyword>
       <keyword>absolute</keyword>
       <keyword>always</keyword>
@@ -282,7 +170,6 @@
       <keyword>groove</keyword>
       <keyword>hebrew</keyword>
       <keyword>help</keyword>
-      <keyword>helvetica</keyword>
       <keyword>hidden</keyword>
       <keyword>hide</keyword>
       <keyword>higher</keyword>
@@ -442,7 +329,6 @@
       <keyword>h4</keyword>
       <keyword>h5</keyword>
       <keyword>h6</keyword>
-      <keyword>hr</keyword>
       <keyword>strong</keyword>
       <keyword>em</keyword>
       <keyword>quote</keyword>
@@ -456,22 +342,58 @@
       <keyword>img</keyword>
       <keyword>ul</keyword>
       <keyword>li</keyword>
+
+      <keyword>html</keyword>
+      
+      <keyword>object</keyword>
+      <keyword>iframe</keyword>
+      <keyword>p</keyword>
+      <keyword>blockquote</keyword>
+      <keyword>abbr</keyword>
+      <keyword>address</keyword>
+      <keyword>cite</keyword>
+      <keyword>del</keyword>
+      <keyword>dfn</keyword>
+      <keyword>ins</keyword>
+      <keyword>kbd</keyword>
+      <keyword>q</keyword>
+      <keyword>samp</keyword>
+      <keyword>sup</keyword>
+      <keyword>var</keyword>
+      <keyword>b</keyword>
+      <keyword>i</keyword>
+      <keyword>dl</keyword>
+      <keyword>dt</keyword>
+      <keyword>dd</keyword>
+      <keyword>ol</keyword>
+      <keyword>legend</keyword>
+      <keyword>caption</keyword>
+      <keyword>tbody</keyword>
+      <keyword>tfoot</keyword>
+      <keyword>thead</keyword>
+      <keyword>article</keyword>
+      <keyword>aside</keyword>
+      <keyword>canvas</keyword>
+      <keyword>details</keyword>
+      <keyword>figcaption</keyword>
+      <keyword>figure</keyword>
+      <keyword>footer</keyword>
+      <keyword>header</keyword>
+      <keyword>hgroup</keyword>
+      <keyword>menu</keyword>
+      <keyword>nav</keyword>
+      <keyword>section</keyword>
+      <keyword>summary</keyword>
+      <keyword>time</keyword>
+      <keyword>mark</keyword>
+      <keyword>audio</keyword>
+      <keyword>video</keyword>
     </context>
 
-    <context id="css-directives" style-ref="css-directives">
-      <prefix>@</prefix>
-      <keyword>media</keyword>
-      <keyword>include</keyword>
-      <keyword>import</keyword>
-      <keyword>mixin</keyword>
+    <context id="variable" style-ref="variable">
+      <match>(\!|\$)[a-zA-Z][a-zA-Z0-9-_]*</match>
     </context>
-
-    <context id="css-directives-values" style-ref="known-property-values">
-      <keyword>all</keyword>
-      <keyword>print</keyword>
-      <keyword>screen</keyword>
-    </context>
-
+    
     <context id="dimension" style-ref="dimension">
       <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
     </context>
@@ -479,9 +401,10 @@
     <context id="hexadecimal-color" style-ref="color">
       <match>#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})</match>
     </context>
-
-    <context id="function" style-ref="function">
-      <start>[a-zA-Z][a-z0-9\-_]+\(</start>
+    
+    <!-- XXX Also matches generic CSS "functions" (e.g. url()) - name "function" may be appropriate-->
+    <context id="mixin" style-ref="function">
+      <start>\+?[a-zA-Z][a-zA-Z0-9-_]*\(</start>
       <end>\)</end>
       <include>
         <context ref="def:escape"/>
@@ -489,12 +412,9 @@
       </include>
     </context>
     
-    <context id="mixin" style-ref="function">
-      <match>\+[a-zA-Z][a-z0-9\-_]+(\(.+\))?</match>
-      <include>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
-      </include>
+    <!-- XXX Ugly. Couldn't this be merged to "mixin"? -->
+    <context id="mixin-no-attribute" style-ref="function">
+      <match>\+[a-zA-Z0-9_-]+</match>
     </context>
 
     <context id="number" style-ref="decimal">
@@ -505,36 +425,31 @@
       <match>\![ \t]*important</match>
     </context>
     
-    <context id="variable" style-ref="variable">
-      <match>\$[a-zA-Z][a-zA-Z0-9\-_]*</match>
-    </context>
-
-    <context id="sass">
+    <context id="sass" class="no-spell-check">
       <include>
-        <context ref="variable"/>
-        <context ref="function"/>
-        <context ref="mixin"/>
-        <context ref="class-tag"/>
         <context ref="comment"/>
-        <context ref="multiline-comment"/>
+        <context ref="comment-multiline"/>
         <context ref="close-comment-outside-comment"/>
-        <context ref="constant"/>
-        <context ref="css-directives"/>
-        <context ref="css-directives-values"/>
-        <context ref="id-tag"/>
-        <context ref="identation-error"/>
+        <context ref="identation-error"/> 
         <context ref="def:string"/>
         <context ref="def:single-quoted-string"/>
+        <context ref="class-tag"/>
+        <context ref="id-tag"/>
+        <context ref="at-rules"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
         <context ref="property-names"/>
-        <context ref="known-property-values"/>
         <context ref="tags"/>
+        <context ref="known-value"/>
+        <context ref="variable"/>
         <context ref="dimension"/>
         <context ref="hexadecimal-color"/>
+        <context ref="mixin"/>
+        <context ref="mixin-no-attribute"/>
         <context ref="number"/>
         <context ref="importance-modifier"/>
       </include>
-    </context>
-  </definitions>
+    </context>        
+  </definitions>    
 </language>
+
