@@ -369,6 +369,9 @@
       <match>(?&lt;!:):[a-zA-Z0-9_]+(!|\?)?</match>
     </context>
 
+    <context id="symbols19" style-ref="symbol">
+      <match>[a-zA-Z0-9_]+(!|\?)?:</match>
+    </context>
 
     <context id="symbols-single-quoted" style-ref="symbol">
       <start>:'</start>
@@ -618,7 +621,8 @@
         <context ref="global-variables"/>
         <context ref="class-variables"/>
         <context ref="instance-variables"/>
-        <context ref="symbols"/>
+	<context ref="symbols"/>
+	<context ref="symbols19"/>
         <context ref="symbols-single-quoted"/>
         <context ref="symbols-double-quoted"/>
         <context ref="regexp-variables"/>

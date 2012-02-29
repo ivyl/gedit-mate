@@ -374,6 +374,10 @@
     <context id="symbols" style-ref="symbol">
       <match>(?&lt;!:):[a-zA-Z0-9_]+(!|\?)?</match>
     </context>
+    
+    <context id="symbols19" style-ref="symbol">
+      <match>[a-zA-Z0-9_]+(!|\?)?:</match>
+    </context>
 
 
     <context id="symbols-single-quoted" style-ref="symbol">
@@ -487,7 +491,8 @@
         <context ref="global-variables"/>
         <context ref="keywords"/>
         <context ref="builtins"/>
-        <context ref="symbols"/>
+	<context ref="symbols"/>
+	<context ref="symbols19"/>
         <context ref="symbols-single-quoted"/>
         <context ref="symbols-double-quoted"/>
         <context ref="nil-value"/>
@@ -955,7 +960,8 @@
         <context ref="global-variables"/>
         <context ref="class-variables"/>
         <context ref="instance-variables"/>
-        <context ref="symbols"/>
+	<context ref="symbols"/>
+	<context ref="symbols19"/>
         <context ref="symbols-single-quoted"/>
         <context ref="symbols-double-quoted"/>
         <context ref="regexp-variables"/>
@@ -1043,6 +1049,7 @@
       <keyword>helper</keyword>
       <keyword>helper_method</keyword>
       <keyword>validate</keyword>
+      <keyword>validates</keyword>
       <keyword>validate_on_create</keyword>
       <keyword>validates_numericality_of</keyword>
       <keyword>validate_on_update</keyword>
@@ -1062,6 +1069,7 @@
       <keyword>attr_readonly</keyword>
       <keyword>with_scope</keyword>
       <keyword>named_scope</keyword>
+      <keyword>scope</keyword>
       <keyword>memoize</keyword>
       <keyword>with_options</keyword>
       <keyword>alias_method_chain</keyword>
