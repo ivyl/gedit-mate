@@ -14,6 +14,10 @@ or
 From now on you can use `g 'file'` command which doesn't block terminal.
 Enable plugins in gedit preferences, choose font (monaco, consolas or DejaVu Sans Mono are great), theme, right formatting, etc.
 
+# Updating
+
+Just follow steps from installation. Gedit keeps configuration in dconf, so it's save.
+
 # Plugins
 
 ## Current

@@ -25,4 +25,7 @@ cp styles/* $PREFIX/styles/
 
 # Create link in .config (since some distributions still uses this)
 mkdir -p $HOME/.config
-ln -s $HOME/.local/share/gedit $HOME/.config/
+
+if [ ! -e $HOME/.config/ ]; then
+    ln -s $HOME/.local/share/gedit $HOME/.config/
+fi
